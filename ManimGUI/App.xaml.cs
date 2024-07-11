@@ -17,10 +17,7 @@ namespace ManimGUI
 
             if (window != null)
             {
-                if (MainPage is Page page)
-                {
-                    window.Title = page.Title;
-                }
+                window.Title = "Manim GUI";
             }
 
             return window;
