@@ -9,6 +9,7 @@ namespace ManimGUI
         {
             string path = project.Path;
             XDocument doc = FileWriter.CreateProjectFile(project);
+            Directory.CreateDirectory(path);
             doc.Save(path + "\\Project.mgui");
         }
     }

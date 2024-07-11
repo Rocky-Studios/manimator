@@ -21,8 +21,8 @@ namespace ManimGUI.Windows
             if (folderPickerResult.IsSuccessful)
             {
                 Folder pickedFolder = folderPickerResult.Folder;
-                projectLocation = pickedFolder.Path;
-                (sender as Button).Text = "Choose (" + pickedFolder.Name + ")";
+                projectLocation = Path.Combine(pickedFolder.Path, projectName);
+                (sender as Button).Text = "Choose (" + pickedFolder.Name + "/" + projectName + ")";
             }
             else
             {
@@ -36,8 +36,18 @@ namespace ManimGUI.Windows
             projectName = e.NewTextValue;
         }
 
-        private void NewProject_Clicked(object sender, EventArgs e)
+        private async void NewProject_Clicked(object sender, EventArgs e)
         {
+            if (projectName.Length == 0)
+            {
+                await DisplayAlert("Notice", "Please enter a project name", "OK");
+                return;
+            }
+            if (projectLocation.Length == 0)
+            {
+                await DisplayAlert("Notice", "Please select a project location", "OK");
+                return;
+            }
             Project project = new(projectName, projectLocation);
             ManimGUI.New(project);
         }
