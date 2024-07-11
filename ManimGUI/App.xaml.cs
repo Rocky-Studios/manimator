@@ -1,4 +1,6 @@
-﻿namespace ManimGUI
+﻿using ManimGUI.Windows;
+
+namespace ManimGUI
 {
     public partial class App : Application
     {
@@ -6,7 +8,22 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new StartupPage());
+        }
+
+        protected override Window CreateWindow(IActivationState activationState)
+        {
+            Window window = base.CreateWindow(activationState);
+
+            if (window != null)
+            {
+                if (MainPage is Page page)
+                {
+                    window.Title = page.Title;
+                }
+            }
+
+            return window;
         }
     }
 }
