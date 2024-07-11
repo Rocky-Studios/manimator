@@ -8,7 +8,7 @@ namespace ManimGUI
         public static void New(Project project)
         {
             string path = project.Path;
-            XDocument doc = FileWriter.CreateProjectFile(project);
+            XDocument doc = Filesystem.CreateProjectFile(project);
             Directory.CreateDirectory(path);
             doc.Save(path + "\\Project.mgui");
         }

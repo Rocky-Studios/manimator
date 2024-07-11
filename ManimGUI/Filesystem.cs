@@ -2,7 +2,7 @@
 
 namespace ManimGUI
 {
-    public static class FileWriter
+    public static class Filesystem
     {
         public static XDocument CreateProjectFile(Project project)
         {
