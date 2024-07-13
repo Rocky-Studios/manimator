@@ -70,13 +70,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Windows\StartupPage.xaml.cs">
+	  <Compile Update="Windows\StartupWindow\StartupPage.xaml.cs">
 	    <DependentUpon>StartupPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Windows\NewProjectPage.xaml">
+	  <MauiXaml Update="Windows\StartupWindow\NewProjectPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Windows\Style.xaml">

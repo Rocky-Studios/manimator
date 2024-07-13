@@ -1,4 +1,4 @@
-﻿using ManimGUI.Windows;
+﻿using ManimGUI.Windows.StartupWindow;
 
 namespace ManimGUI
 {

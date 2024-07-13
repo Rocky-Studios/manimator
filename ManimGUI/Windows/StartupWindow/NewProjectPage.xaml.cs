@@ -4,7 +4,7 @@ using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Storage;
 using CommunityToolkit.Maui.Core.Primitives;
 
-namespace ManimGUI.Windows
+namespace ManimGUI.Windows.StartupWindow
 {
 	public partial class NewProjectPage : ContentPage
 	{
@@ -49,7 +49,20 @@ namespace ManimGUI.Windows
                 return;
             }
             Project project = new(projectName, projectLocation);
-            ManimGUI.New(project);
+            //ManimGUI.New(project);
+
+            // Create a new window
+            var newWindow = new Window();
+
+            // Set its content (you can use any MAUI view here)
+            var contentPage = new StartupPage();
+            contentPage.Content = new Label { Text = "Hello from the new window!" };
+
+            // Set the MainPage of the new window
+            newWindow.Page = contentPage;
+
+            Application.Current.OpenWindow(newWindow);
+            Application.Current.CloseWindow(this.Window);
         }
     }
 }
