@@ -70,12 +70,21 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Windows\EditorWindow\Editorpage.xaml.cs">
+	    <DependentUpon>EditorPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Windows\StartupWindow\StartupPage.xaml.cs">
 	    <DependentUpon>StartupPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="AppShell.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Windows\EditorWindow\EditorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Windows\StartupWindow\NewProjectPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
