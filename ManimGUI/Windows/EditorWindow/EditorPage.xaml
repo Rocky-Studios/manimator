@@ -6,94 +6,95 @@
     <ContentPage.MenuBarItems>
         <MenuBarItem Text="File">
             <MenuFlyoutSubItem Text="New">
-                <MenuFlyoutItem Text="Project">
+                <MenuFlyoutItem Text="Project"  Command="{Binding NewProjectCommand}" >
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Ctrl" Key="N"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
-                <MenuFlyoutItem Text="Scene / Slide">
+                <MenuFlyoutItem Text="Scene / Slide"  Command="{Binding NewSceneSlideCommand}" >
                     <MenuFlyoutItem.KeyboardAccelerators>
                         <KeyboardAccelerator Modifiers="Ctrl,Shift" Key="N"/>
                     </MenuFlyoutItem.KeyboardAccelerators>
                 </MenuFlyoutItem>
             </MenuFlyoutSubItem>
-            <MenuFlyoutItem Text="Open Project...">
+            <MenuFlyoutItem Text="Open Project..."  Command="{Binding OpenCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="O"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Close Project">
+            <MenuFlyoutItem Text="Close Project"  Command="{Binding CloseCommand}" >
 
             </MenuFlyoutItem>
             <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}" >
 
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Save">
+            <MenuFlyoutItem Text="Save"  Command="{Binding SaveCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl" Key="S"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Save as...">
+            <MenuFlyoutItem Text="Save as..."  Command="{Binding SaveAsCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl,Shift" Key="S"/>
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Save a copy...">
+            <MenuFlyoutItem Text="Save a copy..." Command="{Binding SaveACopyCommand}" >
 
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Import...">
+            <MenuFlyoutItem Text="Import..."  Command="{Binding ImportCommand}" >
 
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Export...">
+            <MenuFlyoutItem Text="Export..."  Command="{Binding ExportCommand}" >
 
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Project settings">
+            <MenuFlyoutItem Text="Project settings"  Command="{Binding ProjectSettingsCommand}" >
 
             </MenuFlyoutItem>
         </MenuBarItem>
         <MenuBarItem Text="Edit">
-            <MenuFlyoutItem Text="Cut">
+            <MenuFlyoutItem Text="Undo"  Command="{Binding UndoCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl"
                  Key="Z" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Cut">
+            <MenuFlyoutItem Text="Redo"  Command="{Binding RedoCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl"
                  Key="Y" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Cut">
+            <MenuFlyoutItem Text="Cut"  Command="{Binding CutCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl"
                              Key="X" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Copy">
+            <MenuFlyoutItem Text="Copy"  Command="{Binding CopyCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl"
                  Key="C" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Paste">
+            <MenuFlyoutItem Text="Paste"  Command="{Binding PasteCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Modifiers="Ctrl"
                  Key="V" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Delete">
+            <MenuFlyoutItem Text="Delete"  Command="{Binding DeleteCommand}" >
                 <MenuFlyoutItem.KeyboardAccelerators>
                     <KeyboardAccelerator Key="Delete" />
                 </MenuFlyoutItem.KeyboardAccelerators>
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
-            <MenuFlyoutItem Text="Preferences...">
+            <MenuFlyoutItem Text="Preferences..."  Command="{Binding PreferencesCommand}" >
+                
             </MenuFlyoutItem>
         </MenuBarItem>
     </ContentPage.MenuBarItems>
