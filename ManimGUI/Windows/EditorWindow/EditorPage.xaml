@@ -115,13 +115,20 @@
             </VerticalStackLayout>
         </Border>
         <Border Grid.Column="1">
-            <VerticalStackLayout Padding="10">
+            <StackLayout Padding="10">
 
                 <Label>Preview</Label>
-                <BoxView WidthRequest="768" HeightRequest="432">
-
-                </BoxView>
-            </VerticalStackLayout>
+                <Image VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" BackgroundColor="DarkGray">
+                    
+                </Image>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Image Source="back_start.png" ToolTipProperties.Text="Back to start" Scale="0.5"/>
+                    <Image Source="back_frame.png" ToolTipProperties.Text="Back one frame" Scale="0.5"/>
+                    <Image Source="play.png" ToolTipProperties.Text="Play" Scale="0.5"/>
+                    <Image Source="forward_frame.png" ToolTipProperties.Text="Forward one frame" Scale="0.5"/>
+                    <Image Source="forward_end.png" ToolTipProperties.Text="Forward to end" Scale="0.5"/>
+                </HorizontalStackLayout>
+            </StackLayout>
         </Border>
         <Border>
             <VerticalStackLayout Padding="10">
@@ -137,7 +144,6 @@
         </Border>
         <Border Grid.Row="1" Grid.Column="1">
             <VerticalStackLayout Padding="10">
-
                 <Label>Timeline</Label>
             </VerticalStackLayout>
         </Border>
