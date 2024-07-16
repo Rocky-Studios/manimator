@@ -26,7 +26,7 @@
             <MenuFlyoutItem Text="Close Project">
 
             </MenuFlyoutItem>
-            <MenuFlyoutItem Text="Exit">
+            <MenuFlyoutItem Text="Exit" Command="{Binding ExitCommand}" >
 
             </MenuFlyoutItem>
             <MenuFlyoutSeparator/>
