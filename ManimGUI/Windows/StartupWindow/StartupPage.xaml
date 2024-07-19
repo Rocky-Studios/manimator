@@ -2,8 +2,9 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ManimGUI.Windows.StartupWindow.StartupPage" Title="Manim GUI">
+
     
-    <Grid HorizontalOptions="Center">
+    <Grid>
         
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -17,7 +18,8 @@
             VerticalOptions="Center"
             FontSize="72"
             FontFamily="CambriaMath"/>
-        <HorizontalStackLayout Grid.Row="1">
+
+        <HorizontalStackLayout HorizontalOptions="Center" Grid.Row="1">
             <Button 
                 x:Name="OpenProjectButton"
                 Text="Open Project" 
@@ -31,9 +33,33 @@
                 Clicked="OnNewProject_Clicked"
                 Style="{StaticResource StartupButton}"/>
         </HorizontalStackLayout>
-        
-    </Grid>
 
-        
+        <AbsoluteLayout>
+            <Label
+            Text="a²+b² = c²"
+            AbsoluteLayout.LayoutBounds="250, 500, 1000, 1000"
+            FontSize="25"
+            FontFamily="CambriaMath"/>
+
+            <Label
+            Text="ax² + bx + c = 0"
+            AbsoluteLayout.LayoutBounds="1250, 100, 1000, 1000"
+            FontSize="25"
+            FontFamily="CambriaMath"/>
+
+
+
+            <BoxView Color="DarkKhaki"
+                 AbsoluteLayout.LayoutBounds="1500, 750, 100, 100" />
+
+            <Polygon Points="0,0 80,50, 0,100" Stroke="ForestGreen" Fill="ForestGreen" AbsoluteLayout.LayoutBounds="500, 50, 100, 100" />
+        </AbsoluteLayout>
+
+
+
+    </Grid>
     
+
+
+
 </ContentPage>
