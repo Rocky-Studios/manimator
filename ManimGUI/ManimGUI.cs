@@ -14,7 +14,40 @@ namespace ManimGUI
             string appDir = Path.Combine(appDataDir, "ManimGUI");
             // On Windows, appDir might be something like `C:\Users\John\AppData\Roaming\ManimGUI`
             // On macOS, appDir might be something like `/Users/John/Library/Application Support/ManimGUI`
+            
+            try {
+                Directory.CreateDirectory(appDir);
+            } catch { }
+            
             return appDir;
+            
+        }
+        public static void AddProjectToRecents(Project newProject)
+        {
+            List<Project> projects = new List<Project>();
+
+            string recentProjectsPath = Path.Combine(GetApplicationDataPath(), "RecentProjects.xml");
+            if(!File.Exists(recentProjectsPath))
+            {
+                // Create the file
+                XDocument recentsFile = Filesystem.CreateRecentsFile();
+                recentsFile.Save(recentProjectsPath);
+            }
+            XDocument document = XDocument.Load(recentProjectsPath);
+
+            XElement Xprojects = document.Element("Projects");
+            foreach (XElement p in Xprojects.Elements())
+            {
+                if (p.Attribute("Name").Value == newProject.Name)
+                    return;
+            }
+
+            XElement newProjectElement = new XElement("Project");
+            newProjectElement.SetAttributeValue("Name", newProject.Name);
+            newProjectElement.SetAttributeValue("Location", newProject.Path);
+
+            Xprojects.Add(newProjectElement);
+            document.Save(recentProjectsPath);
         }
         public static async Task Init(Project project)
         {
@@ -24,9 +57,9 @@ namespace ManimGUI
             Directory.CreateDirectory(projectPath);
             doc.Save(projectPath + "\\Project.mgui");
 
+            AddProjectToRecents(project);
+
             // Setup ManimGUI app folder and venv
-            bool appFolder = Directory.Exists(GetApplicationDataPath());
-            if(!appFolder) Directory.CreateDirectory(GetApplicationDataPath());
 
             bool venvFolder = Directory.Exists(Path.Combine(GetApplicationDataPath(), "venv"));
             if(!venvFolder) // Create the python virtual environment
