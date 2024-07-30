@@ -8,6 +8,7 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Label
             Text="Manim GUI"
@@ -17,7 +18,7 @@
             VerticalOptions="Center"
             FontSize="72"
             FontFamily="CambriaMath"/>
-        <HorizontalStackLayout Grid.Row="1">
+        <HorizontalStackLayout Grid.Row="1" VerticalOptions="Start">
             <Button 
                 x:Name="OpenProjectButton"
                 Text="Open Project" 
@@ -31,7 +32,9 @@
                 Clicked="OnNewProject_Clicked"
                 Style="{StaticResource StartupButton}"/>
         </HorizontalStackLayout>
-        
+        <VerticalStackLayout x:Name="RecentProjectList"  Grid.Row="2" VerticalOptions="Center">
+            
+        </VerticalStackLayout>
     </Grid>
 
         
