@@ -36,6 +36,52 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<SignAssembly>False</SignAssembly>
+		<Title>Manim GUI</Title>
+		<Company>Rocky Studios</Company>
+		<Authors>Gergo Kaszas, Sheldon Machado</Authors>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/Rocky-Studios/ManimGUI</RepositoryUrl>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-android|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-android|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-ios|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-maccatalyst|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|net8.0-windows10.0.19041.0|AnyCPU'">
+	  <ApplicationId>net.rockystudios.manimgui</ApplicationId>
+	  <ApplicationDisplayVersion>0.0.2</ApplicationDisplayVersion>
 	</PropertyGroup>
 
 	<ItemGroup>

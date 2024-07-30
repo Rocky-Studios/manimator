@@ -14,5 +14,13 @@ namespace ManimGUI
             doc.Root.SetAttributeValue("Version", project.LastOpenedVersion);
             return doc;
         }
+
+        public static XDocument CreateRecentsFile()
+        {
+            XDocument doc = new XDocument(
+                new XElement("Projects")
+            );
+            return doc;
+        }
     }
 }

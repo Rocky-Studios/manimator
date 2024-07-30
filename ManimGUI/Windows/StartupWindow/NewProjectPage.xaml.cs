@@ -52,9 +52,7 @@ namespace ManimGUI.Windows.StartupWindow
             Project project = new(projectName, projectLocation);
             await ManimGUI.Init(project);
 
-            NavigationPage editorNav = new NavigationPage(new EditorPage());
-            Application.Current.MainPage = editorNav;
-
+            ManimGUI.OpenProject(project);
         }
     }
 }
