@@ -1,7 +1,6 @@
 ﻿using System.Xml.Linq;
-using System;
-using System.IO;
 using System.Diagnostics;
+using ManimGUI.Windows.EditorWindow;
 
 namespace ManimGUI
 {
@@ -85,7 +84,6 @@ namespace ManimGUI
 
             await WritePythonFile(lines, projectPath + "\\Project.py");            
         }
-
         public static async Task WritePythonFile(string[] lines, string path)
         {
             // Set a variable to the Documents path.
@@ -98,6 +96,11 @@ namespace ManimGUI
                 foreach (string line in lines)
                     await outputFile.WriteLineAsync(line);
             }
+        }
+        public static void OpenProject(Project project)
+        {
+            NavigationPage editorNav = new NavigationPage(new EditorPage());
+            Application.Current.MainPage = editorNav;
         }
     }
 }
