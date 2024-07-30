@@ -43,7 +43,7 @@ namespace ManimGUI
 
             XElement newProjectElement = new XElement("Project");
             newProjectElement.SetAttributeValue("Name", newProject.Name);
-            newProjectElement.SetAttributeValue("Location", newProject.Path);
+            newProjectElement.SetAttributeValue("Path", newProject.Path);
 
             Xprojects.Add(newProjectElement);
             document.Save(recentProjectsPath);
