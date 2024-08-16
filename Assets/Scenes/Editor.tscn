@@ -1,0 +1,103 @@
+[gd_scene load_steps=4 format=3 uid="uid://byix1b6uwj6bs"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mxlfx"]
+viewport_path = NodePath("Scene/SubViewport")
+
+[sub_resource type="Environment" id="Environment_ctm3a"]
+background_mode = 1
+background_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 5.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_7mr03"]
+
+[node name="Node" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Topbar" type="HBoxContainer" parent="Background/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.06
+
+[node name="MenuButton" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "File"
+item_count = 2
+popup/item_0/text = "New"
+popup/item_0/id = 0
+popup/item_1/text = "Open"
+popup/item_1/id = 1
+
+[node name="MenuButton2" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Edit"
+
+[node name="MenuButton3" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Insert"
+
+[node name="MenuButton4" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Export"
+
+[node name="Filler" type="Control" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Row1" type="HBoxContainer" parent="Background/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Assets" type="VBoxContainer" parent="Background/Screen/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Display" type="TextureRect" parent="Background/Screen/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = SubResource("ViewportTexture_mxlfx")
+expand_mode = 3
+
+[node name="Row2" type="HBoxContainer" parent="Background/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Scene"]
+size = Vector2i(1920, 1080)
+
+[node name="Camera3D" type="Camera3D" parent="Scene/SubViewport"]
+environment = SubResource("Environment_ctm3a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.26017)
+mesh = SubResource("BoxMesh_7mr03")
