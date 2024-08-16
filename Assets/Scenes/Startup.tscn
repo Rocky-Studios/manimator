@@ -1,16 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://c1oxq33y4yjof"]
+[gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
 
-[ext_resource type="FontFile" uid="uid://dv8ojhbgl84i4" path="res://Assets/Fonts/cambria_math.ttc" id="1_33fn2"]
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
 [ext_resource type="Script" path="res://Assets/Scripts/ManimGUI.cs" id="1_ethm1"]
-[ext_resource type="Script" path="res://Assets/Scenes/Startup.cs" id="3_56sar"]
+[ext_resource type="Script" path="res://Assets/Scripts/Startup.cs" id="3_56sar"]
+[ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
+[ext_resource type="Script" path="res://Assets/Scripts/NewProject.cs" id="5_13sks"]
+[ext_resource type="LabelSettings" uid="uid://0l63lk0x8n3u" path="res://Assets/LabelSettings/Small.res" id="5_a4iki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2py"]
 bg_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_3tnjr"]
-font = ExtResource("1_33fn2")
-font_size = 128
 
 [sub_resource type="InputEventKey" id="InputEventKey_y6nnx"]
 device = -1
@@ -21,6 +19,15 @@ unicode = 110
 [sub_resource type="Shortcut" id="Shortcut_4eoee"]
 events = [SubResource("InputEventKey_y6nnx")]
 
+[sub_resource type="LabelSettings" id="LabelSettings_25qcn"]
+font_size = 60
+
+[sub_resource type="LabelSettings" id="LabelSettings_ni587"]
+font_size = 60
+
+[sub_resource type="Theme" id="Theme_ghmph"]
+default_font_size = 20
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -30,7 +37,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ethm1")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Startup" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,7 +48,7 @@ theme = ExtResource("1_em2tl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
 script = ExtResource("3_56sar")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="ManimGUILabel" type="Label" parent="Startup"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -49,11 +56,11 @@ offset_top = 40.0
 offset_bottom = 191.0
 grow_horizontal = 2
 text = "Manim GUI"
-label_settings = SubResource("LabelSettings_3tnjr")
+label_settings = ExtResource("4_qlct2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Startup"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -65,18 +72,133 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="OpenProjectButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="OpenProjectButton" type="Button" parent="Startup/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 text = "Open Project"
 
-[node name="NewProjectButton" type="Button" parent="Panel/HBoxContainer"]
+[node name="NewProjectButton" type="Button" parent="Startup/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_4eoee")
 text = "New Project"
 
-[connection signal="pressed" from="Panel/HBoxContainer/NewProjectButton" to="Panel" method="OnNewProjectButtonClicked"]
-[connection signal="pressed" from="Panel/HBoxContainer/NewProjectButton" to="Panel" method="_on_new_project_button_pressed"]
+[node name="NewProject" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_em2tl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
+script = ExtResource("5_13sks")
+
+[node name="Label" type="Label" parent="NewProject"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 191.0
+grow_horizontal = 2
+text = "New Project"
+label_settings = ExtResource("4_qlct2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ManimGUILabel" type="Label" parent="NewProject"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 160.0
+offset_bottom = 311.0
+grow_horizontal = 2
+text = "Manim GUI"
+label_settings = ExtResource("5_a4iki")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FieldsContainer" type="BoxContainer" parent="NewProject"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -720.0
+grow_horizontal = 2
+grow_vertical = 0
+vertical = true
+
+[node name="Name" type="BoxContainer" parent="NewProject/FieldsContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="NewProject/FieldsContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+text = "Project name "
+label_settings = SubResource("LabelSettings_25qcn")
+horizontal_alignment = 2
+
+[node name="TextEdit" type="TextEdit" parent="NewProject/FieldsContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 50
+
+[node name="Location" type="BoxContainer" parent="NewProject/FieldsContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NewProject/FieldsContainer/Location"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Project location "
+label_settings = SubResource("LabelSettings_ni587")
+horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="NewProject/FieldsContainer/Location"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Choose"
+
+[node name="ChooseLocationDialog" type="FileDialog" parent="NewProject/FieldsContainer/Location"]
+title = "Open a Directory"
+position = Vector2i(0, 36)
+size = Vector2i(1445, 538)
+theme = SubResource("Theme_ghmph")
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+
+[node name="BackButton" type="Button" parent="NewProject"]
+layout_mode = 1
+offset_right = 228.0
+offset_bottom = 103.0
+theme_override_font_sizes/font_size = 60
+text = "Back"
+
+[node name="CreateButton" type="Button" parent="NewProject"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -114.0
+offset_top = -180.0
+offset_right = 114.0
+offset_bottom = -77.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 80
+text = "Create"
+
+[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
+[connection signal="text_changed" from="NewProject/FieldsContainer/Name/TextEdit" to="NewProject" method="OnProjectNameChanged"]
+[connection signal="pressed" from="NewProject/FieldsContainer/Location/Button" to="NewProject" method="OnChooseProjectLocationPressed"]
+[connection signal="dir_selected" from="NewProject/FieldsContainer/Location/ChooseLocationDialog" to="NewProject" method="OnLocationSelected"]
+[connection signal="pressed" from="NewProject/BackButton" to="NewProject" method="OnBackButtonClicked"]
+[connection signal="pressed" from="NewProject/CreateButton" to="NewProject" method="CreateNewProject"]

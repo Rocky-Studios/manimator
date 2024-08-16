@@ -12,11 +12,12 @@ public partial class Startup : Panel
 	public override void _Process(double delta)
 	{
 	}
-	
-	
+
+    private void OnNewProjectButtonClicked()
+    {
+        Visible = false;
+        GetNode<Panel>("../NewProject").Visible = true;
+    }
+
 }
 
-private void OnNewProjectButtonClicked()
-{
-	// Replace with function body.
-}

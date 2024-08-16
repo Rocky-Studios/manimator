@@ -69,17 +69,16 @@ public partial class ManimGUI : Node
 	public static void Init(Project project)
 	{
 		string projectPath = project.Path;
-
+		GD.Print("project init", projectPath);
 		XDocument doc = Filesystem.CreateProjectFile(project);
-		Directory.CreateDirectory(projectPath);
-		doc.Save(projectPath + "\\Project.mgui");
+		if(!Directory.Exists(projectPath)) Directory.CreateDirectory(projectPath);
+		doc.Save(projectPath + "\\Project.manim");
 
-		AddProjectToRecents(project);
+		//AddProjectToRecents(project);
 	}
-	/*
+	
 	public static void OpenProject(Project project)
 	{
-		NavigationPage editorNav = new NavigationPage(new EditorPage());
-		Application.Current.MainPage = editorNav;
-	}*/
+		
+	}
 }
