@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using Manim;
 namespace ManimGUI;
 public partial class Editor : Control
 {

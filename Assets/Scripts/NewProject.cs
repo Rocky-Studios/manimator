@@ -1,7 +1,6 @@
 using Godot;
-using System;
+using Manim;
 using System.IO;
-using System.Linq;
 
 namespace ManimGUI;
 public partial class NewProject : Panel
@@ -43,7 +42,11 @@ public partial class NewProject : Panel
 
     private void CreateNewProject()
     {
-        Project newProject = new(ProjectName, ProjectLocation);
+        Project newProject = new()
+        {
+            Name = ProjectName,
+            Path = ProjectLocation,
+        };
         ManimGUI.Init(newProject);
         ManimGUI.OpenProject(newProject);
     }

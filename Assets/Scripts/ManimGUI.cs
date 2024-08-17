@@ -3,6 +3,7 @@ using System;
 using System.IO;
 using System.Xml.Linq;
 using System.Diagnostics;
+using Manim;
 using System.Collections.Generic;
 
 namespace ManimGUI;

@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using Manim;
+using System.Xml.Linq;
 
 namespace ManimGUI
 {
