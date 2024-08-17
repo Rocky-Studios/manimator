@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
+[gd_scene load_steps=12 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
-[ext_resource type="Script" path="res://Assets/Scripts/ManimGUI.cs" id="1_ethm1"]
-[ext_resource type="Script" path="res://Assets/Scripts/Startup.cs" id="3_56sar"]
+[ext_resource type="Script" path="res://Assets/Scenes/shapemaker.gd" id="3_5vy0x"]
 [ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
-[ext_resource type="Script" path="res://Assets/Scripts/NewProject.cs" id="5_13sks"]
 [ext_resource type="LabelSettings" uid="uid://0l63lk0x8n3u" path="res://Assets/LabelSettings/Small.res" id="5_a4iki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2py"]
 bg_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
+
+[sub_resource type="Theme" id="Theme_xpyb8"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_y6nnx"]
 device = -1
@@ -35,7 +35,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_ethm1")
 
 [node name="Startup" type="Panel" parent="."]
 layout_mode = 1
@@ -46,7 +45,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_em2tl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
-script = ExtResource("3_56sar")
 
 [node name="ManimGUILabel" type="Label" parent="Startup"]
 layout_mode = 1
@@ -70,12 +68,15 @@ offset_top = -180.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 1.04299)
 alignment = 1
+script = ExtResource("3_5vy0x")
 
 [node name="OpenProjectButton" type="Button" parent="Startup/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
+theme = SubResource("Theme_xpyb8")
 text = "Open Project"
 
 [node name="NewProjectButton" type="Button" parent="Startup/HBoxContainer"]
@@ -84,6 +85,21 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_4eoee")
 text = "New Project"
+
+[node name="Triangle" type="Polygon2D" parent="Startup/HBoxContainer"]
+position = Vector2(78, -15.3405)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(53, -69.9908, 202, -134.229, 193, -0.958801)
+
+[node name="Swuare" type="Polygon2D" parent="Startup/HBoxContainer"]
+position = Vector2(654, -138.064)
+polygon = PackedVector2Array(799, -21.0931, 1058, -31.6397, 1077, 175.456, 795, 171.621)
+
+[node name="Pacman?" type="Polygon2D" parent="Startup/HBoxContainer"]
+position = Vector2(286, 426.656)
+rotation = -0.58845
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(695, 511.988, 671, 503.359, 665, 484.183, 674, 458.296, 693, 436.244, 721, 438.162, 752, 455.42, 758, 471.719, 756, 489.936, 746, 501.441, 732, 488.018, 717, 474.595, 714, 491.853, 710, 512.946)
 
 [node name="NewProject" type="Panel" parent="."]
 visible = false
@@ -95,7 +111,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_em2tl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
-script = ExtResource("5_13sks")
 
 [node name="Label" type="Label" parent="NewProject"]
 layout_mode = 1
@@ -195,8 +210,8 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Create"
 
-[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
 [connection signal="text_changed" from="NewProject/FieldsContainer/Name/TextEdit" to="NewProject" method="OnProjectNameChanged"]
 [connection signal="pressed" from="NewProject/FieldsContainer/Location/Button" to="NewProject" method="OnChooseProjectLocationPressed"]
 [connection signal="dir_selected" from="NewProject/FieldsContainer/Location/ChooseLocationDialog" to="NewProject" method="OnLocationSelected"]
