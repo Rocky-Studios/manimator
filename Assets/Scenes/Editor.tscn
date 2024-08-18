@@ -1,4 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://byix1b6uwj6bs"]
+[gd_scene load_steps=10 format=3 uid="uid://byix1b6uwj6bs"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Editor.cs" id="1_g8st7"]
+[ext_resource type="Texture2D" uid="uid://bwhojvnspp2b8" path="res://Assets/Images/Icons/Start.svg" id="2_6ucj1"]
+[ext_resource type="Texture2D" uid="uid://b0m3calh4fcar" path="res://Assets/Images/Icons/ChevronLeft.svg" id="3_dvn2u"]
+[ext_resource type="Texture2D" uid="uid://c78tec8m4qwv3" path="res://Assets/Images/Icons/Play.svg" id="4_26sbm"]
+[ext_resource type="Texture2D" uid="uid://bawfid3m4qdqe" path="res://Assets/Images/Icons/ChevronRight.svg" id="5_2i1pv"]
+[ext_resource type="Texture2D" uid="uid://h7ehiy2h3d16" path="res://Assets/Images/Icons/End.svg" id="6_d3ubf"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_mxlfx"]
 viewport_path = NodePath("Scene/SubViewport")
@@ -19,6 +26,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_g8st7")
 metadata/_edit_use_anchors_ = true
 
 [node name="Background" type="Panel" parent="."]
@@ -79,11 +87,43 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Display" type="TextureRect" parent="Background/Screen/Row1"]
+[node name="Preview" type="VBoxContainer" parent="Background/Screen/Row1"]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="Display" type="TextureRect" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 texture = SubResource("ViewportTexture_mxlfx")
 expand_mode = 3
+stretch_mode = 5
+
+[node name="Buttons" type="HBoxContainer" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+alignment = 1
+
+[node name="Start" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("2_6ucj1")
+
+[node name="Back 1 frame" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("3_dvn2u")
+
+[node name="Pause_play" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("4_26sbm")
+
+[node name="Forward 1 frame" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("5_2i1pv")
+
+[node name="End" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("6_d3ubf")
 
 [node name="Row2" type="HBoxContainer" parent="Background/Screen"]
 layout_mode = 2
@@ -96,7 +136,11 @@ size = Vector2i(1920, 1080)
 
 [node name="Camera3D" type="Camera3D" parent="Scene/SubViewport"]
 environment = SubResource("Environment_ctm3a")
+projection = 1
+size = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.26017)
 mesh = SubResource("BoxMesh_7mr03")
+
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Pause_play" to="." method="PausePlayPressed"]
