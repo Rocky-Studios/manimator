@@ -10,14 +10,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\References\BetterNumberSystem.dll" />
-    <None Include="Assets\References\ManimCSharp.dll" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="BetterNumberSystem">
       <HintPath>Assets\References\BetterNumberSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="ManimCSharp">
-      <HintPath>Assets\References\ManimCSharp.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>
