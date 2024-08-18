@@ -137,6 +137,8 @@ size = Vector2i(1920, 1080)
 
 [node name="Camera3D" type="Camera3D" parent="Scene/SubViewport"]
 environment = SubResource("Environment_ctm3a")
+projection = 1
+size = 5.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.26017)
