@@ -1,7 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
-[ext_resource type="Script" path="res://Assets/Scenes/shapemaker.gd" id="3_5vy0x"]
 [ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
 [ext_resource type="LabelSettings" uid="uid://0l63lk0x8n3u" path="res://Assets/LabelSettings/Small.res" id="5_a4iki"]
 
@@ -70,7 +69,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1, 1.04299)
 alignment = 1
-script = ExtResource("3_5vy0x")
 
 [node name="OpenProjectButton" type="Button" parent="Startup/HBoxContainer"]
 layout_mode = 2
