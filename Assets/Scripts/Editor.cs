@@ -14,9 +14,12 @@ public partial class Editor : Control
 
 	Timer timer;
 
+    private static CompressedTexture2D PauseTexture;
+    private static CompressedTexture2D PlayTexture;
+	private static Button PausePlayButton;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
 		timer = new Timer();
 		//                       Frame rate
@@ -26,6 +29,10 @@ public partial class Editor : Control
 		CurrentFrame = StartFrame;
 
 		timer.Start();
+
+		PauseTexture = ResourceLoader.Load<CompressedTexture2D>("res://Assets/Images/Icons/Pause.svg");
+		PlayTexture = ResourceLoader.Load<CompressedTexture2D>("res://Assets/Images/Icons/Play.svg");
+		PausePlayButton = GetNode<Button>("Background/Screen/Row1/Preview/Buttons/Pause_play");
 	}
 
     private void OnTimerTick(object sender, ElapsedEventArgs e)
@@ -46,5 +53,14 @@ public partial class Editor : Control
 	private void PausePlayPressed()
 	{
 		IsPlaying = !IsPlaying;
+
+		if (IsPlaying)
+		{
+			PausePlayButton.Icon = PauseTexture;
+		} 
+		else
+        {
+            PausePlayButton.Icon = PlayTexture;
+        }
     }
 }
