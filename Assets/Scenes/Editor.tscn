@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://byix1b6uwj6bs"]
+[gd_scene load_steps=9 format=3 uid="uid://byix1b6uwj6bs"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Editor.cs" id="1_g8st7"]
 [ext_resource type="Texture2D" uid="uid://bwhojvnspp2b8" path="res://Assets/Images/Icons/Start.svg" id="2_6ucj1"]
@@ -16,8 +16,6 @@ background_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 5.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_7mr03"]
 
 [node name="Node" type="Control"]
 layout_mode = 3
@@ -56,7 +54,6 @@ size_flags_horizontal = 3
 text = "File"
 item_count = 2
 popup/item_0/text = "New"
-popup/item_0/id = 0
 popup/item_1/text = "Open"
 popup/item_1/id = 1
 
@@ -136,12 +133,11 @@ size_flags_vertical = 3
 size = Vector2i(1920, 1080)
 
 [node name="Camera3D" type="Camera3D" parent="Scene/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 environment = SubResource("Environment_ctm3a")
 projection = 1
 size = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.26017)
-mesh = SubResource("BoxMesh_7mr03")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/SubViewport"]
 
 [connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Pause_play" to="." method="PausePlayPressed"]
