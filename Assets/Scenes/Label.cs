@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Square : Polygon2D
+public partial class Label : Godot.Label
 {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -11,6 +11,5 @@ public partial class Square : Polygon2D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		Rotate(0.001f);
 	}
 }

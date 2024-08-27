@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1oxq33y4yjof"]
+[gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
 [ext_resource type="Script" path="res://Assets/Scenes/Triangles.cs" id="3_58ilq"]
-[ext_resource type="Script" path="res://Assets/Scenes/Square.cs" id="3_76pvn"]
 [ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
-[ext_resource type="Script" path="res://Assets/Scenes/Label.cs" id="5_4ihko"]
 [ext_resource type="LabelSettings" uid="uid://0l63lk0x8n3u" path="res://Assets/LabelSettings/Small.res" id="5_a4iki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2py"]
@@ -20,6 +18,31 @@ unicode = 110
 
 [sub_resource type="Shortcut" id="Shortcut_4eoee"]
 events = [SubResource("InputEventKey_y6nnx")]
+
+[sub_resource type="CSharpScript" id="CSharpScript_pqaw1"]
+script/source = "using Godot;
+using System;
+
+public partial class Square : Polygon2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+	
+	
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+	
+	void Update(){
+		Rotate(0.01f);
+	}
+	
+}
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_25qcn"]
 font_size = 60
@@ -93,7 +116,7 @@ rotation = 0.499929
 color = Color(0.3825, 0.544301, 0.281268, 1)
 offset = Vector2(-851.516, -475.672)
 polygon = PackedVector2Array(763, 397, 943, 397, 943, 560, 763, 560)
-script = ExtResource("3_76pvn")
+script = SubResource("CSharpScript_pqaw1")
 
 [node name="Triangles" type="Polygon2D" parent="Startup"]
 position = Vector2(315, 1071)
@@ -116,7 +139,6 @@ offset_right = 1498.0
 offset_bottom = 325.0
 rotation = 0.123337
 text = "A²+B² = C²"
-script = ExtResource("5_4ihko")
 
 [node name="Label" type="Label" parent="Startup/Label"]
 layout_mode = 0
