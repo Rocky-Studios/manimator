@@ -1,8 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
-[ext_resource type="Script" path="res://Assets/Scenes/squarerotation.gd" id="3_plbu7"]
-[ext_resource type="Script" path="res://Assets/Scenes/trianglesrotation.gd" id="4_fwocv"]
+[ext_resource type="Script" path="res://Assets/Scenes/Square.cs" id="3_76pvn"]
 [ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
 [ext_resource type="LabelSettings" uid="uid://0l63lk0x8n3u" path="res://Assets/LabelSettings/Small.res" id="5_a4iki"]
 
@@ -19,6 +18,21 @@ unicode = 110
 
 [sub_resource type="Shortcut" id="Shortcut_4eoee"]
 events = [SubResource("InputEventKey_y6nnx")]
+
+[sub_resource type="GDScript" id="GDScript_bo3vx"]
+script/source = "extends Polygon2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	rotate(0.0001)
+	pass
+"
 
 [sub_resource type="LabelSettings" id="LabelSettings_25qcn"]
 font_size = 60
@@ -92,19 +106,18 @@ rotation = 0.499929
 color = Color(0.3825, 0.544301, 0.281268, 1)
 offset = Vector2(-851.516, -475.672)
 polygon = PackedVector2Array(763, 397, 943, 397, 943, 560, 763, 560)
-script = ExtResource("3_plbu7")
+script = ExtResource("3_76pvn")
 
 [node name="Triangles" type="Polygon2D" parent="Startup"]
 position = Vector2(315, 1071)
 rotation = -0.660927
 color = Color(6.54578e-06, 0.695724, 0.86444, 1)
 polygon = PackedVector2Array(763, 397, 943, 560, 763, 560)
-script = ExtResource("4_fwocv")
+script = SubResource("GDScript_bo3vx")
 
 [node name="Polygon2D3" type="Polygon2D" parent="Startup/Triangles"]
 position = Vector2(1302.12, 1580.97)
 rotation = -2.145
-scale = Vector2(1, 1)
 color = Color(0.784605, 0.45964, 0.982925, 1)
 polygon = PackedVector2Array(763, 397, 943, 560, 763, 560)
 
@@ -118,6 +131,7 @@ rotation = 0.123337
 text = "A²+B² = C²"
 
 [node name="Label" type="Label" parent="Startup/Label"]
+layout_mode = 0
 offset_left = -1267.56
 offset_top = 658.947
 offset_right = -781.562
