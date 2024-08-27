@@ -9,6 +9,14 @@ namespace ManimGUI
 {
     public static class Converter
     {
+        public static Godot.Color ColorToGodot(System.Drawing.Color color)
+        {
+            float red = color.R;
+            float green = color.G;
+            float blue = color.B;
+            float alpha = color.A;
+            return new Godot.Color(red, green, blue, alpha);
+        }
         public static Godot.Vector2 Vector2ToGodot(BetterNumberSystem.Vector2 vector)
         {
             switch (vector.X.MeasurementType)
