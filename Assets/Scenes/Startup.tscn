@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
+[gd_scene load_steps=14 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
 [ext_resource type="Script" path="res://Assets/Scripts/ManimGUI.cs" id="1_ethm1"]
@@ -27,6 +27,24 @@ font_size = 60
 
 [sub_resource type="Theme" id="Theme_ghmph"]
 default_font_size = 20
+
+[sub_resource type="CSharpScript" id="CSharpScript_t6hfb"]
+script/source = "using Godot;
+using System;
+
+public partial class Wall : Polygon2D
+{
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
+
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
+	{
+	}
+}
+"
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -194,6 +212,10 @@ grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Create"
+
+[node name="Wall" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-5, 6, -12, 1104, 1932, 1098, 1932, -24, -8, -5, -8, -17, 1951, -55, 1969, 1119, -35, 1123, -24, 5)
+script = SubResource("CSharpScript_t6hfb")
 
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
