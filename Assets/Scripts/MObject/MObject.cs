@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Godot;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using Color = System.Drawing.Color;
+using Vector3 = Godot.Vector3;
 
 namespace ManimGUI.MObject
 {
@@ -30,18 +33,22 @@ namespace ManimGUI.MObject
         /// The order of the object on the screen. Objects with higher zIndeces will appear on top of others with lower ones
         /// </summary>
         public int zIndex = 0;
+        [Range(0, 1)]
+        public float Opacity;
         /// <summary>
         /// The 2D screen position of the object
         /// </summary>
-        public Vector2 Position = Vector2.Zero;
+        public Vector3 Position = Vector3.Zero;
         /// <summary>
         /// The 2D screen rotation of the object
         /// </summary>
-        public Vector2 Rotation = Vector2.Zero;
+        public Vector3 Rotation = Vector3.Zero;
         /// <summary>
         /// The 2D screen scale of the object
         /// </summary>
-        public Vector2 Scale = Vector2.One;
+        public Vector3 Scale = Vector3.One;
+
+        public Material Material;
 
         /// <summary>
         /// Generates a MObject
@@ -53,7 +60,7 @@ namespace ManimGUI.MObject
         /// <param name="position">The 2D screen position of the object</param>
         /// <param name="rotation">The 2D screen rotation of the object</param>
         /// <param name="scale">The 2D screen scale of the object</param>
-        protected MObject(string name, Color strokeColor, Color? fillColor = null, int zIndex = 0, Vector2? position = null, Vector2? rotation = null, Vector2? scale = null)
+        protected MObject(string name, Color strokeColor, Color? fillColor = null, int zIndex = 0, float opacity = 1, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
         {
             Name = name;
 
@@ -63,15 +70,24 @@ namespace ManimGUI.MObject
             else FillColor = Color.Transparent;
 
             this.zIndex = zIndex;
+            Opacity = opacity;
 
-            if(position == null) Position = Vector2.Zero;
-            else Position = (Vector2) position;
+            if(position == null) Position = Vector3.Zero;
+            else Position = (Vector3) position;
 
-            if(rotation == null) Rotation = Vector2.Zero;
-            else Rotation = (Vector2) rotation;
+            if(rotation == null) Rotation = Vector3.Zero;
+            else Rotation = (Vector3) rotation;
 
-            if (scale == null) Scale = Vector2.Zero;
-            else Scale = (Vector2)scale;
+            if (scale == null) Scale = Vector3.One;
+            else Scale = (Vector3)scale;
+
+            Material = new StandardMaterial3D();
+        }
+
+        public virtual void OnUpdate()
+        {
+            (Material as StandardMaterial3D).AlbedoColor = new Godot.Color(FillColor.R, FillColor.G, FillColor.B, Opacity);
+            (Material as StandardMaterial3D).Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
         }
     }
 }

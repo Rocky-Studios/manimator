@@ -28,6 +28,22 @@ namespace ManimGUI.MObject
         /// The objects affected by this animation
         /// </summary>
         public MObject[] Objects { get; set; }
+
+        public bool IsPlaying()
+        {
+            int startFrame = (int)StartTime * Editor.CurrentProject.Settings.Framerate;
+            int endFrame = (int)(StartTime + Length) * Editor.CurrentProject.Settings.Framerate;
+
+            if (Editor.CurrentFrame < startFrame || Editor.CurrentFrame > endFrame) return false;
+            else return true;
+        }
+        public float GetPlayPercentage()
+        {
+            int startFrame = (int)StartTime * Editor.CurrentProject.Settings.Framerate;
+            int endFrame = (int)(StartTime + Length) * Editor.CurrentProject.Settings.Framerate;
+
+            return float.Lerp(startFrame, endFrame, Editor.CurrentFrame);
+        }
     }
 
     /// <summary>
@@ -62,5 +78,6 @@ namespace ManimGUI.MObject
             Objects = objects;
             if (Objects.Length == 0) throw new ArgumentException("Animation must affect at least one object");
         }
+
     }
 }
