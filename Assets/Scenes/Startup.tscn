@@ -1,16 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://c1oxq33y4yjof"]
+[gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
-[ext_resource type="Script" path="res://Assets/Scenes/Triangles.cs" id="3_58ilq"]
-[ext_resource type="Script" path="res://Assets/Scenes/Square.cs" id="3_76pvn"]
+[ext_resource type="Script" path="res://Assets/Scripts/ManimGUI.cs" id="1_ethm1"]
+[ext_resource type="Script" path="res://Assets/Scripts/Startup.cs" id="3_56sar"]
 [ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
-[ext_resource type="Script" path="res://Assets/Scenes/Label.cs" id="5_4ihko"]
+[ext_resource type="Script" path="res://Assets/Scripts/NewProject.cs" id="5_13sks"]
 [ext_resource type="LabelSettings" uid="uid://0l63lk0x8n3u" path="res://Assets/LabelSettings/Small.res" id="5_a4iki"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2py"]
 bg_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
-
-[sub_resource type="Theme" id="Theme_xpyb8"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_y6nnx"]
 device = -1
@@ -37,6 +35,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ethm1")
 
 [node name="Startup" type="Panel" parent="."]
 layout_mode = 1
@@ -47,6 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_em2tl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
+script = ExtResource("3_56sar")
 
 [node name="ManimGUILabel" type="Label" parent="Startup"]
 layout_mode = 1
@@ -70,14 +70,12 @@ offset_top = -180.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 1.04299)
 alignment = 1
 
 [node name="OpenProjectButton" type="Button" parent="Startup/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
-theme = SubResource("Theme_xpyb8")
 text = "Open Project"
 
 [node name="NewProjectButton" type="Button" parent="Startup/HBoxContainer"]
@@ -86,46 +84,6 @@ size_flags_horizontal = 6
 size_flags_vertical = 4
 shortcut = SubResource("Shortcut_4eoee")
 text = "New Project"
-
-[node name="Square" type="Polygon2D" parent="Startup"]
-position = Vector2(276.284, 241.644)
-rotation = 0.499929
-color = Color(0.3825, 0.544301, 0.281268, 1)
-offset = Vector2(-851.516, -475.672)
-polygon = PackedVector2Array(763, 397, 943, 397, 943, 560, 763, 560)
-script = ExtResource("3_76pvn")
-
-[node name="Triangles" type="Polygon2D" parent="Startup"]
-position = Vector2(315, 1071)
-rotation = -0.660927
-color = Color(6.54578e-06, 0.695724, 0.86444, 1)
-polygon = PackedVector2Array(763, 397, 943, 560, 763, 560)
-script = ExtResource("3_58ilq")
-
-[node name="Polygon2D3" type="Polygon2D" parent="Startup/Triangles"]
-position = Vector2(1302.12, 1580.97)
-rotation = -2.145
-color = Color(0.784605, 0.45964, 0.982925, 1)
-polygon = PackedVector2Array(763, 397, 943, 560, 763, 560)
-
-[node name="Label" type="Label" parent="Startup"]
-layout_mode = 0
-offset_left = 1458.0
-offset_top = 265.0
-offset_right = 1498.0
-offset_bottom = 325.0
-rotation = 0.123337
-text = "A²+B² = C²"
-script = ExtResource("5_4ihko")
-
-[node name="Label" type="Label" parent="Startup/Label"]
-layout_mode = 0
-offset_left = -1267.56
-offset_top = 658.947
-offset_right = -781.562
-offset_bottom = 718.947
-rotation = 0.162304
-text = "x=(-b±√(b²-4ac))/(2a)"
 
 [node name="NewProject" type="Panel" parent="."]
 visible = false
@@ -137,6 +95,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_em2tl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
+script = ExtResource("5_13sks")
 
 [node name="Label" type="Label" parent="NewProject"]
 layout_mode = 1
