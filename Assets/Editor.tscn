@@ -1,0 +1,150 @@
+[gd_scene load_steps=9 format=3 uid="uid://dr8lxhafhffwx"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/Editor.cs" id="1_g0ems"]
+[ext_resource type="Texture2D" uid="uid://bwhojvnspp2b8" path="res://Assets/Images/Icons/Start.svg" id="2_rmqdc"]
+[ext_resource type="Texture2D" uid="uid://b0m3calh4fcar" path="res://Assets/Images/Icons/ChevronLeft.svg" id="3_etrbb"]
+[ext_resource type="Texture2D" uid="uid://c78tec8m4qwv3" path="res://Assets/Images/Icons/Play.svg" id="4_04i1d"]
+[ext_resource type="Texture2D" uid="uid://bawfid3m4qdqe" path="res://Assets/Images/Icons/ChevronRight.svg" id="5_1a2tx"]
+[ext_resource type="Texture2D" uid="uid://h7ehiy2h3d16" path="res://Assets/Images/Icons/End.svg" id="6_p6mdb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_mxlfx"]
+viewport_path = NodePath("Scene/SubViewport")
+
+[sub_resource type="Environment" id="Environment_ctm3a"]
+background_mode = 1
+background_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 5.0
+
+[node name="Node" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g0ems")
+metadata/_edit_use_anchors_ = true
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Screen" type="VBoxContainer" parent="Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Topbar" type="HBoxContainer" parent="Background/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.06
+
+[node name="MenuButton" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "File"
+item_count = 2
+popup/item_0/text = "New"
+popup/item_1/text = "Open"
+popup/item_1/id = 1
+
+[node name="MenuButton2" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Edit"
+
+[node name="MenuButton3" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Insert"
+
+[node name="MenuButton4" type="MenuButton" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Export"
+
+[node name="Filler" type="Control" parent="Background/Screen/Topbar"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
+
+[node name="Row1" type="HBoxContainer" parent="Background/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Assets" type="VBoxContainer" parent="Background/Screen/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Preview" type="VBoxContainer" parent="Background/Screen/Row1"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Display" type="TextureRect" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = SubResource("ViewportTexture_mxlfx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Buttons" type="HBoxContainer" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+alignment = 1
+
+[node name="Start" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("2_rmqdc")
+
+[node name="Back 1 frame" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("3_etrbb")
+
+[node name="Pause_play" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("4_04i1d")
+
+[node name="Forward 1 frame" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("5_1a2tx")
+
+[node name="End" type="Button" parent="Background/Screen/Row1/Preview/Buttons"]
+layout_mode = 2
+icon = ExtResource("6_p6mdb")
+
+[node name="Frame" type="TextEdit" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+text = "1"
+
+[node name="Row2" type="HBoxContainer" parent="Background/Screen"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Scene" type="Node3D" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Scene"]
+size = Vector2i(1920, 1080)
+
+[node name="Camera3D" type="Camera3D" parent="Scene/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
+environment = SubResource("Environment_ctm3a")
+projection = 1
+size = 5.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/SubViewport"]
+
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Pause_play" to="." method="PausePlayPressed"]
+[connection signal="text_changed" from="Background/Screen/Row1/Preview/Frame" to="." method="OnFrameChanged"]

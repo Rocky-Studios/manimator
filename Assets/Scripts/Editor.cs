@@ -7,31 +7,31 @@ namespace ManimGUI;
 public partial class Editor : Control
 {
 	public static Project CurrentProject;
-    public static Scene CurrentScene;
+	public static Scene CurrentScene;
 
-    public static bool IsPlaying = false;
+	public static bool IsPlaying = false;
 	public static int StartFrame = 1;
 	public static int EndFrame = 120;
 	public static int CurrentFrame = 1;
 
 	public static Node Scene3DRoot;
 
-    Mesh PointMesh = ResourceLoader.Load<CylinderMesh>("res://Assets/MObjects/Point.res");
-    Mesh CubeMesh = ResourceLoader.Load<BoxMesh>("res://Assets/MObjects/Cube.res");
+	Mesh PointMesh = ResourceLoader.Load<CylinderMesh>("res://Assets/MObjects/Point.res");
+	Mesh CubeMesh = ResourceLoader.Load<BoxMesh>("res://Assets/MObjects/Cube.res");
 
-    Timer timer;
+	Timer timer;
 
-    private static CompressedTexture2D PauseTexture;
-    private static CompressedTexture2D PlayTexture;
+	private static CompressedTexture2D PauseTexture;
+	private static CompressedTexture2D PlayTexture;
 	private static Button PausePlayButton;
 
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
 	{
 		timer = new Timer();
 		//                       Frame rate
 		timer.Interval = 1000 / (30);
-        timer.Elapsed += OnTimerTick;
+		timer.Elapsed += OnTimerTick;
 
 		CurrentFrame = StartFrame;
 
@@ -45,58 +45,64 @@ public partial class Editor : Control
 
 		if(CurrentProject == null)
 		{
-            Project newProject = new("Test proj", "abcd", new Manim.ProjectSettings()
-            {
-                Width = 1920,
-                Height = 1080,
-                Framerate = 30
-            });
+			Project newProject = new("Test proj", "abcd", new Manim.ProjectSettings()
+			{
+				Width = 1920,
+				Height = 1080,
+				Framerate = 30
+			});
 
-            Scene Scene1 = new Scene("Scene 1", 0);
-            Scene1.MObjects.Add(new Point("Middle point", System.Drawing.Color.Aqua));
-            Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray()));
-            newProject.Scenes.Add(Scene1);
+			Scene Scene1 = new Scene("Scene 1", 0);
+			Scene1.MObjects.Add(new Point("Middle point", System.Drawing.Color.Aqua));
+			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray()));
+			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
-        }
+		}
 
 		CurrentScene = CurrentProject.Scenes[0];
-        foreach (MObject.MObject obj in CurrentScene.MObjects)
-        {
-            if(obj is Point)
+		foreach (MObject.MObject obj in CurrentScene.MObjects)
+		{
+			if(obj is Point)
 			{
 				MeshInstance3D p = new MeshInstance3D()
 				{
 					Mesh = PointMesh
-                };
+				};
 				p.RotateX(Mathf.Pi/2);
 
-                p.Position = obj.Position;
-                p.Scale    = obj.Scale;
+				p.Position = obj.Position;
+				p.Scale    = obj.Scale;
 
-                Scene3DRoot.AddChild(p);
-                p.Owner = GetTree().Root;
-            }
-        }
-    }
+				Scene3DRoot.AddChild(p);
+				p.Owner = GetTree().Root;
+			}
+		}
+	}
 
-    private void OnTimerTick(object sender, ElapsedEventArgs e)
-    {
-        if (!IsPlaying) return;
-        if(CurrentFrame < EndFrame)
+	private void OnTimerTick(object sender, ElapsedEventArgs e)
+	{
+		if (!IsPlaying) return;
+		if(CurrentFrame < EndFrame)
 		{
 			CurrentFrame++;
 		}
-    }
+	}
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
+	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	public override void _Process(double delta)
 	{
+		GD.Print(CurrentFrame);
+		// If frame counter isn't being edited then set the frame to the current frame
+		if(!GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").HasFocus()) GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").Text = CurrentFrame.ToString();
+		
+
+
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
 			obj.OnUpdate();
 			obj.Opacity = 0.5f;
-        }
-    }
+		}
+	}
 
 	private void PausePlayPressed()
 	{
@@ -107,8 +113,15 @@ public partial class Editor : Control
 			PausePlayButton.Icon = PauseTexture;
 		} 
 		else
-        {
-            PausePlayButton.Icon = PlayTexture;
-        }
-    }
+		{
+			PausePlayButton.Icon = PlayTexture;
+		}
+	}
+
+	public void OnFrameChanged()
+	{
+		IsPlaying = false;
+		int newFrame = int.Parse(GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").Text);
+		CurrentFrame = newFrame;
+	}
 }
