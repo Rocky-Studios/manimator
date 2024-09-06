@@ -118,10 +118,30 @@ public partial class Editor : Control
 		}
 	}
 
-	public void OnFrameChanged()
+	private void OnFrameChanged()
 	{
 		IsPlaying = false;
 		int newFrame = int.Parse(GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").Text);
 		CurrentFrame = newFrame;
+	}
+
+	private void ToStart()
+	{
+		CurrentFrame = StartFrame;
+	}
+
+	private void Back1Frame()
+	{
+		CurrentFrame--;
+	}
+
+	private void Forward1Frame()
+	{
+		CurrentFrame++;
+	}
+
+	private void ToEnd()
+	{
+		CurrentFrame = EndFrame;
 	}
 }
