@@ -17,9 +17,9 @@ public partial class ManimGUI : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        EditorScene = ResourceLoader.Load<PackedScene>("res://Assets/Scenes/Editor.tscn");
+		EditorScene = ResourceLoader.Load<PackedScene>("res://Assets/Scenes/Editor.tscn");
 		instance = this;
-    }
+	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
