@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="ManimGUI"
+config/name="Manimator"
 run/main_scene="res://Assets/Scenes/Startup.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
 boot_splash/image="res://Assets/Images/Splashscreen.png"

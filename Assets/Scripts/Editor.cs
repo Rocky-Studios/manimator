@@ -91,10 +91,8 @@ public partial class Editor : Control
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		GD.Print(CurrentFrame);
 		// If frame counter isn't being edited then set the frame to the current frame
 		if(!GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").HasFocus()) GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").Text = CurrentFrame.ToString();
-		
 
 
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
@@ -111,7 +109,7 @@ public partial class Editor : Control
 		if (IsPlaying)
 		{
 			PausePlayButton.Icon = PauseTexture;
-		} 
+		}
 		else
 		{
 			PausePlayButton.Icon = PlayTexture;
