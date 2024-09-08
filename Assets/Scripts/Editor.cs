@@ -73,18 +73,25 @@ public partial class Editor : Control
 				p.Position = obj.Position;
 				p.Scale    = obj.Scale;
 
+				ShaderMaterial shaderMat = new()
+				{
+					Shader = ResourceLoader.Load<Shader>("res://Assets/MObject.gdshader")
+				};
+
+				p.MaterialOverride = shaderMat;
+
 				Scene3DRoot.AddChild(p);
 				p.Owner = GetTree().Root;
 			}
 		}
-	}
 
-	private void OnTimerTick(object sender, ElapsedEventArgs e)
-	{
-		if (!IsPlaying) return;
-		if(CurrentFrame < EndFrame)
+		void OnTimerTick(object sender, ElapsedEventArgs e)
 		{
-			CurrentFrame++;
+			if (!IsPlaying) return;
+			if(CurrentFrame < EndFrame)
+			{
+				CurrentFrame++;
+			}
 		}
 	}
 
@@ -93,7 +100,6 @@ public partial class Editor : Control
 	{
 		// If frame counter isn't being edited then set the frame to the current frame
 		if(!GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").HasFocus()) GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").Text = CurrentFrame.ToString();
-
 
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
