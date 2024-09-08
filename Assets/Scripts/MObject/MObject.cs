@@ -86,8 +86,7 @@ namespace ManimGUI.MObject
 
         public virtual void OnUpdate()
         {
-            (Material as StandardMaterial3D).AlbedoColor = new Godot.Color(FillColor.R, FillColor.G, FillColor.B, Opacity);
-            (Material as StandardMaterial3D).Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+            
         }
     }
 }

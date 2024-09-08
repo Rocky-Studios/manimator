@@ -123,6 +123,12 @@ icon = ExtResource("5_2i1pv")
 layout_mode = 2
 icon = ExtResource("6_d3ubf")
 
+[node name="Frame" type="TextEdit" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+text = "1"
+
 [node name="Row2" type="HBoxContainer" parent="Background/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -140,4 +146,9 @@ size = 5.0
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/SubViewport"]
 
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Start" to="." method="ToStart"]
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Back 1 frame" to="." method="Back1Frame"]
 [connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Pause_play" to="." method="PausePlayPressed"]
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Forward 1 frame" to="." method="Forward1Frame"]
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/End" to="." method="ToEnd"]
+[connection signal="text_changed" from="Background/Screen/Row1/Preview/Frame" to="." method="OnFrameChanged"]

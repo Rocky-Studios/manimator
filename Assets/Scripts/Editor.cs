@@ -62,27 +62,6 @@ public partial class Editor : Control
 		CurrentScene = CurrentProject.Scenes[0];
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
-			MeshInstance3D p = new();
-
-			p.Position = obj.Position;
-			p.Scale = obj.Scale;
-
-			Scene3DRoot.AddChild(p);
-			p.Owner = GetTree().Root;
-
-			p.MaterialOverlay = new StandardMaterial3D()
-			{
-				AlbedoColor = Converter.ColorToGodot(obj.FillColor)
-			};
-
-			if (obj is Point)
-			{
-				p.Mesh = PointMesh;
-				p.RotateX(Mathf.Pi / 2);
-			}
-			else
-			{
-
 			if(obj is Point)
 			{
 				MeshInstance3D p = new MeshInstance3D()
@@ -94,18 +73,25 @@ public partial class Editor : Control
 				p.Position = obj.Position;
 				p.Scale    = obj.Scale;
 
+				ShaderMaterial shaderMat = new()
+				{
+					Shader = ResourceLoader.Load<Shader>("res://Assets/MObject.gdshader")
+				};
+
+				p.MaterialOverride = shaderMat;
+
 				Scene3DRoot.AddChild(p);
 				p.Owner = GetTree().Root;
 			}
 		}
-	}
 
-	private void OnTimerTick(object sender, ElapsedEventArgs e)
-	{
-		if (!IsPlaying) return;
-		if(CurrentFrame < EndFrame)
+		void OnTimerTick(object sender, ElapsedEventArgs e)
 		{
-			CurrentFrame++;
+			if (!IsPlaying) return;
+			if(CurrentFrame < EndFrame)
+			{
+				CurrentFrame++;
+			}
 		}
 	}
 
@@ -115,8 +101,6 @@ public partial class Editor : Control
 		GD.Print(CurrentFrame);
 		// If frame counter isn't being edited then set the frame to the current frame
 		if(!GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").HasFocus()) GetNode<TextEdit>("Background/Screen/Row1/Preview/Frame").Text = CurrentFrame.ToString();
-		
-
 
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
@@ -132,7 +116,7 @@ public partial class Editor : Control
 		if (IsPlaying)
 		{
 			PausePlayButton.Icon = PauseTexture;
-		} 
+		}
 		else
 		{
 			PausePlayButton.Icon = PlayTexture;
