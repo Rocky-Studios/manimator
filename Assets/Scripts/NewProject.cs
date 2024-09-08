@@ -1,10 +1,17 @@
 using Godot;
 using Manim;
+using ManimGUI.MObject;
 using System.IO;
 
 namespace ManimGUI;
 public partial class NewProject : Panel
 {
+	public string ProjectName;
+	public string ProjectLocation;
+	// Called when the node enters the scene tree for the first time.
+	public override void _Ready()
+	{
+	}
 	public string ProjectName;
 	public string ProjectLocation;
 	// Called when the node enters the scene tree for the first time.

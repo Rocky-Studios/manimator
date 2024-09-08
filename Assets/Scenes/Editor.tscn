@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://byix1b6uwj6bs"]
+[gd_scene load_steps=9 format=3 uid="uid://byix1b6uwj6bs"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Editor.cs" id="1_g8st7"]
 [ext_resource type="Texture2D" uid="uid://bwhojvnspp2b8" path="res://Assets/Images/Icons/Start.svg" id="2_6ucj1"]
@@ -16,8 +16,6 @@ background_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 5.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_7mr03"]
 
 [node name="Node" type="Control"]
 layout_mode = 3
@@ -125,6 +123,12 @@ icon = ExtResource("5_2i1pv")
 layout_mode = 2
 icon = ExtResource("6_d3ubf")
 
+[node name="Frame" type="TextEdit" parent="Background/Screen/Row1/Preview"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+text = "1"
+
 [node name="Row2" type="HBoxContainer" parent="Background/Screen"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -135,12 +139,16 @@ size_flags_vertical = 3
 size = Vector2i(1920, 1080)
 
 [node name="Camera3D" type="Camera3D" parent="Scene/SubViewport"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
 environment = SubResource("Environment_ctm3a")
 projection = 1
 size = 5.0
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Scene/SubViewport"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.26017)
-mesh = SubResource("BoxMesh_7mr03")
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Scene/SubViewport"]
 
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Start" to="." method="ToStart"]
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Back 1 frame" to="." method="Back1Frame"]
 [connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Pause_play" to="." method="PausePlayPressed"]
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/Forward 1 frame" to="." method="Forward1Frame"]
+[connection signal="pressed" from="Background/Screen/Row1/Preview/Buttons/End" to="." method="ToEnd"]
+[connection signal="text_changed" from="Background/Screen/Row1/Preview/Frame" to="." method="OnFrameChanged"]
