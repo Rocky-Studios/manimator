@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform float opacity = 1;
+uniform float opacity = 1.0f;
 
 void vertex() {
 	// Called for every vertex the material is visible on.
