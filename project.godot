@@ -27,7 +27,7 @@ window/stretch/aspect="expand"
 
 [dotnet]
 
-project/assembly_name="ManimGUI"
+project/assembly_name="Manimator"
 
 [rendering]
 

@@ -1,4 +1,4 @@
-﻿using ManimGUI;
+﻿using Manimator;
 using System.Collections.Generic;
 using System.Xml.Linq;
 
@@ -15,7 +15,7 @@ namespace Manim
         {
             Name = name;
             Path = path;
-            LastOpenedVersion = ManimGUI.ManimGUI.VERSION;
+            LastOpenedVersion = Manimator.Manimator.VERSION;
             Scenes = new();
             Settings = settings;
         }

@@ -1,9 +1,9 @@
 using Godot;
 using Manim;
-using ManimGUI.MObject;
+using Manimator.MObject;
 using System.Timers;
 using Timer = System.Timers.Timer;
-namespace ManimGUI;
+namespace Manimator;
 public partial class Editor : Control
 {
 	public static Project CurrentProject;

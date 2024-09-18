@@ -6,13 +6,13 @@ using System.Diagnostics;
 using Manim;
 using System.Collections.Generic;
 
-namespace ManimGUI;
-public partial class ManimGUI : Node
+namespace Manimator;
+public partial class Manimator : Node
 {
 	public static readonly string VERSION = "0.0.1";
 	public static PackedScene EditorScene;
 
-	private static ManimGUI instance;
+	private static Manimator instance;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

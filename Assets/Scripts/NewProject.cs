@@ -1,17 +1,12 @@
 using Godot;
 using Manim;
-using ManimGUI.MObject;
+using Manimator.MObject;
 using System.IO;
 
-namespace ManimGUI;
+namespace Manimator;
+
 public partial class NewProject : Panel
 {
-	public string ProjectName;
-	public string ProjectLocation;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
 	public string ProjectName;
 	public string ProjectLocation;
 	// Called when the node enters the scene tree for the first time.
@@ -49,12 +44,13 @@ public partial class NewProject : Panel
 
 	private void CreateNewProject()
 	{
-		Project newProject = new()
-		{
-			Name = ProjectName,
-			Path = ProjectLocation,
-		};
-		ManimGUI.Init(newProject);
-		ManimGUI.OpenProject(newProject);
+		Project newProject = new(ProjectName, ProjectLocation, new()
+        {
+            Width = 1920,
+            Height = 1080,
+            Framerate = 60
+        });
+		Manimator.Init(newProject);
+		Manimator.OpenProject(newProject);
 	}
 }
