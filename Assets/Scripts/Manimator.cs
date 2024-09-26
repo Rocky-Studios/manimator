@@ -30,9 +30,9 @@ public partial class Manimator : Node
 	public static string GetApplicationDataPath()
 	{
 		string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-		string appDir = Path.Combine(appDataDir, "ManimGUI");
-		// On Windows, appDir might be something like `C:\Users\John\AppData\Roaming\ManimGUI`
-		// On macOS, appDir might be something like `/Users/John/Library/Application Support/ManimGUI`
+		string appDir = Path.Combine(appDataDir, "Manimator");
+		// On Windows, appDir might be something like `C:\Users\John\AppData\Roaming\Manimator`
+		// On macOS, appDir might be something like `/Users/John/Library/Application Support/Manimator`
 
 		try
 		{
