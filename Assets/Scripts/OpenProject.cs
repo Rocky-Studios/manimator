@@ -42,7 +42,7 @@ public partial class NewProject : Panel
 		GetNode<Button>("FieldsContainer/Location/Button").Text = "Choose (" + dirComponents[dirComponents.Length-1] + "/" + ProjectName + ")";
 	}
 
-	private void CreateNewProject()
+	private void OpenProject()
 	{
 		Project newProject = new(ProjectName, ProjectLocation, new()
 		{

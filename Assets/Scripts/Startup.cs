@@ -13,11 +13,15 @@ public partial class Startup : Panel
 	{
 	}
 
-    private void OnNewProjectButtonClicked()
-    {
-        Visible = false;
-        GetNode<Panel>("../NewProject").Visible = true;
-    }
+	private void OnNewProjectButtonClicked()
+	{
+		Visible = false;
+		GetNode<Panel>("../NewProject").Visible = true;
+	}
+	private void OpenButtonPressed()
+	{
+		Visible = false;
+		GetNode<Panel>("../OpenProject").Visible = true;
+	}
 
 }
-
