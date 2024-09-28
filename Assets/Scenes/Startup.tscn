@@ -10,6 +10,9 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en2py"]
 bg_color = Color(0.0666667, 0.0666667, 0.0823529, 1)
 
+[sub_resource type="Theme" id="Theme_ghmph"]
+default_font_size = 20
+
 [sub_resource type="InputEventKey" id="InputEventKey_y6nnx"]
 device = -1
 ctrl_pressed = true
@@ -24,9 +27,6 @@ font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_ni587"]
 font_size = 60
-
-[sub_resource type="Theme" id="Theme_ghmph"]
-default_font_size = 20
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -66,22 +66,35 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -180.0
-offset_bottom = 180.0
+offset_top = -34.0
+offset_bottom = 34.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="OpenProjectButton" type="Button" parent="Startup/HBoxContainer"]
+[node name="Location" type="BoxContainer" parent="Startup/HBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 4
-text = "Open Project"
+
+[node name="Button" type="Button" parent="Startup/HBoxContainer/Location"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Open project"
+
+[node name="ChooseLocationDialog" type="FileDialog" parent="Startup/HBoxContainer/Location"]
+auto_translate_mode = 1
+title = "Open a Directory"
+position = Vector2i(0, 36)
+size = Vector2i(1445, 538)
+theme = SubResource("Theme_ghmph")
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
 
 [node name="NewProjectButton" type="Button" parent="Startup/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 6
-size_flags_vertical = 4
 shortcut = SubResource("Shortcut_4eoee")
 text = "New Project"
 
@@ -195,6 +208,11 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Create"
 
+<<<<<<< Updated upstream
+=======
+[connection signal="pressed" from="Startup/HBoxContainer/Location/Button" to="NewProject" method="OnChooseProjectLocationPressed"]
+[connection signal="dir_selected" from="Startup/HBoxContainer/Location/ChooseLocationDialog" to="NewProject" method="OnLocationSelected"]
+>>>>>>> Stashed changes
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
 [connection signal="text_changed" from="NewProject/FieldsContainer/Name/TextEdit" to="NewProject" method="OnProjectNameChanged"]
