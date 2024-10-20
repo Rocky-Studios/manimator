@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Vector3 = Godot.Vector3;
 
-namespace ManimGUI.MObject
+namespace Manimator.MObject
 {
     public class Polygon : MObject
     {

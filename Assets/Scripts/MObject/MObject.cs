@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using Color = System.Drawing.Color;
 using Vector3 = Godot.Vector3;
 
-namespace ManimGUI.MObject
+namespace Manimator.MObject
 {
     /// <summary>
     /// Basically anything shown on screen

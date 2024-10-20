@@ -1,9 +1,9 @@
 using Godot;
 using Manim;
-using ManimGUI.MObject;
+using Manimator.MObject;
 using System.Timers;
 using Timer = System.Timers.Timer;
-namespace ManimGUI;
+namespace Manimator;
 public partial class Editor : Control
 {
 	public static Project CurrentProject;
@@ -40,7 +40,7 @@ public partial class Editor : Control
 		PauseTexture = ResourceLoader.Load<CompressedTexture2D>("res://Assets/Images/Icons/Pause.svg");
 		PlayTexture = ResourceLoader.Load<CompressedTexture2D>("res://Assets/Images/Icons/Play.svg");
 		PausePlayButton = GetNode<Button>("Background/Screen/Row1/Preview/Buttons/Pause_play");
-
+	
 		Scene3DRoot = GetNode<Node>("Scene/SubViewport");
 
 		if(CurrentProject == null)
@@ -92,6 +92,15 @@ public partial class Editor : Control
 			{
 				CurrentFrame++;
 			}
+		}
+	}
+
+	private void OnTimerTick(object sender, ElapsedEventArgs e)
+	{
+		if (!IsPlaying) return;
+		if(CurrentFrame < EndFrame)
+		{
+			CurrentFrame++;
 		}
 	}
 

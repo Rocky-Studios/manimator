@@ -6,13 +6,13 @@ using System.Diagnostics;
 using Manim;
 using System.Collections.Generic;
 
-namespace ManimGUI;
-public partial class ManimGUI : Node
+namespace Manimator;
+public partial class Manimator : Node
 {
 	public static readonly string VERSION = "0.0.1";
 	public static PackedScene EditorScene;
 
-	private static ManimGUI instance;
+	private static Manimator instance;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,9 +30,9 @@ public partial class ManimGUI : Node
 	public static string GetApplicationDataPath()
 	{
 		string appDataDir = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-		string appDir = Path.Combine(appDataDir, "ManimGUI");
-		// On Windows, appDir might be something like `C:\Users\John\AppData\Roaming\ManimGUI`
-		// On macOS, appDir might be something like `/Users/John/Library/Application Support/ManimGUI`
+		string appDir = Path.Combine(appDataDir, "Manimator");
+		// On Windows, appDir might be something like `C:\Users\John\AppData\Roaming\Manimator`
+		// On macOS, appDir might be something like `/Users/John/Library/Application Support/Manimator`
 
 		try
 		{

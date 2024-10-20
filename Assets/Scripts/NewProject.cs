@@ -1,9 +1,10 @@
 using Godot;
 using Manim;
-using ManimGUI.MObject;
+using Manimator.MObject;
 using System.IO;
 
-namespace ManimGUI;
+namespace Manimator;
+
 public partial class NewProject : Panel
 {
 	public string ProjectName;
@@ -43,19 +44,13 @@ public partial class NewProject : Panel
 
 	private void CreateNewProject()
 	{
-		Project newProject = new(ProjectName, ProjectLocation, new Manim.ProjectSettings()
-		{
-			Width = 1920,
-			Height = 1080,
-			Framerate = 30
-		});
-		ManimGUI.Init(newProject);
-
-		Scene Scene1 = new Scene("Scene 1", 0);
-		Scene1.MObjects.Add(new Point("Middle point", System.Drawing.Color.Aqua));
-		Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray()));
-		newProject.Scenes.Add(Scene1);
-
-		ManimGUI.OpenProject(newProject);
+		Project newProject = new(ProjectName, ProjectLocation, new()
+        {
+            Width = 1920,
+            Height = 1080,
+            Framerate = 60
+        });
+		Manimator.Init(newProject);
+		Manimator.OpenProject(newProject);
 	}
 }

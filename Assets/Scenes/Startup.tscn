@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://c1oxq33y4yjof"]
 
 [ext_resource type="Theme" uid="uid://dyupta3ib5h7k" path="res://Assets/Default.theme" id="1_em2tl"]
-[ext_resource type="Script" path="res://Assets/Scripts/ManimGUI.cs" id="1_ethm1"]
+[ext_resource type="Script" path="res://Assets/Scripts/Manimator.cs" id="1_ethm1"]
 [ext_resource type="Script" path="res://Assets/Scripts/Startup.cs" id="3_56sar"]
 [ext_resource type="LabelSettings" uid="uid://v0kwm7th7h4" path="res://Assets/LabelSettings/Large.res" id="4_qlct2"]
 [ext_resource type="Script" path="res://Assets/Scripts/NewProject.cs" id="5_13sks"]
@@ -38,6 +38,7 @@ grow_vertical = 2
 script = ExtResource("1_ethm1")
 
 [node name="Startup" type="Panel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -48,7 +49,7 @@ theme = ExtResource("1_em2tl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_en2py")
 script = ExtResource("3_56sar")
 
-[node name="ManimGUILabel" type="Label" parent="Startup"]
+[node name="ManimatorLabel" type="Label" parent="Startup"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -86,7 +87,6 @@ shortcut = SubResource("Shortcut_4eoee")
 text = "New Project"
 
 [node name="NewProject" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -109,14 +109,14 @@ label_settings = ExtResource("4_qlct2")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ManimGUILabel" type="Label" parent="NewProject"]
+[node name="ManimatorLabel" type="Label" parent="NewProject"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 160.0
 offset_bottom = 311.0
 grow_horizontal = 2
-text = "Manim GUI"
+text = "Manimator"
 label_settings = ExtResource("5_a4iki")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -195,8 +195,8 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Create"
 
-[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
+[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
 [connection signal="text_changed" from="NewProject/FieldsContainer/Name/TextEdit" to="NewProject" method="OnProjectNameChanged"]
 [connection signal="pressed" from="NewProject/FieldsContainer/Location/Button" to="NewProject" method="OnChooseProjectLocationPressed"]
 [connection signal="dir_selected" from="NewProject/FieldsContainer/Location/ChooseLocationDialog" to="NewProject" method="OnLocationSelected"]
