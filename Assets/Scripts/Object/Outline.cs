@@ -20,10 +20,11 @@ public partial class PointOutline : Outline
         _camera = camera;
     }
 
-    public void _draw(Camera3D cam)
+    public void _draw()
     {
         Vector2 pointPos = _camera.UnprojectPosition(Point.Position);
-        DrawCircle(pointPos, 10f, Converter.ColorToGodot(Point.StrokeColor) );
+        Color stroke = Converter.ColorToGodot(Point.StrokeColor);
+        DrawCircle(pointPos, 10f, stroke);
     }
 }
 

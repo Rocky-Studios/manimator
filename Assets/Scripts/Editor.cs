@@ -56,7 +56,7 @@ public partial class Editor : Control
 			Scene Scene1 = new Scene("Scene 1", 0);
 			Scene1.MObjects.Add(new Point("Middle point", System.Drawing.Color.Aqua));
 			Scene1.MObjects.Add(new Point("Up point", System.Drawing.Color.Aqua, position: new Vector3(1, 1, 0)));
-			Scene1.MObjects.Add(new Segment("Line", System.Drawing.Color.Red, Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
+			//Scene1.MObjects.Add(new Segment("Line", System.Drawing.Color.Red, Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray()));
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;

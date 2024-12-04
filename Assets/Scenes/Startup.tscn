@@ -195,8 +195,8 @@ grow_vertical = 0
 theme_override_font_sizes/font_size = 80
 text = "Create"
 
-[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
 [connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="OnNewProjectButtonClicked"]
+[connection signal="pressed" from="Startup/HBoxContainer/NewProjectButton" to="Startup" method="_on_new_project_button_pressed"]
 [connection signal="text_changed" from="NewProject/FieldsContainer/Name/TextEdit" to="NewProject" method="OnProjectNameChanged"]
 [connection signal="pressed" from="NewProject/FieldsContainer/Location/Button" to="NewProject" method="OnChooseProjectLocationPressed"]
 [connection signal="dir_selected" from="NewProject/FieldsContainer/Location/ChooseLocationDialog" to="NewProject" method="OnLocationSelected"]
