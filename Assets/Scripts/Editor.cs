@@ -55,6 +55,8 @@ public partial class Editor : Control
 
 			Scene Scene1 = new Scene("Scene 1", 0);
 			Scene1.MObjects.Add(new Point("Middle point", System.Drawing.Color.Aqua));
+			Scene1.MObjects.Add(new Point("Up point", System.Drawing.Color.Aqua, position: new Vector3(1, 1, 0)));
+			Scene1.MObjects.Add(new Segment("Line", System.Drawing.Color.Aqua, Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray()));
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
@@ -63,30 +65,19 @@ public partial class Editor : Control
 		CurrentScene = CurrentProject.Scenes[0];
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
-			if(obj is Point)
+			if(obj is Point p)
 			{
-				MeshInstance3D p = new MeshInstance3D()
-				{
-					
-				};
-				p.RotateX(Mathf.Pi/2);
-
-				p.Position = obj.Position;
-				p.Scale    = obj.Scale;
-
-				ShaderMaterial shaderMat = new()
-				{
-					Shader = ResourceLoader.Load<Shader>("res://Assets/MObject.gdshader")
-				};
-
-				p.MaterialOverride = shaderMat;
-
-				Scene3DRoot.AddChild(p);
-				p.Owner = GetTree().Root;
-				
+				if(p.StrokeColor.A == 0) continue;
 				PointOutline outline = new();
-				outline.Position = Camera.UnprojectPosition( p.GlobalPosition );
-				//outline.Position = new Vector2(1, 1);
+				outline.Position = Camera.UnprojectPosition( obj.Position );
+				Scene3DRoot.AddChild(outline);
+				outline.Notification((int)NotificationDraw);
+			}
+			else if (obj is Segment s) {
+				if(s.StrokeColor.A == 0) continue;
+				LineOutline outline = new();
+				outline.PointA = Camera.UnprojectPosition( s.A.Position );
+				outline.PointB = Camera.UnprojectPosition( s.B.Position );
 				Scene3DRoot.AddChild(outline);
 				outline.Notification((int)NotificationDraw);
 			}
