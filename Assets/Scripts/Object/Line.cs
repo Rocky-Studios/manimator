@@ -15,7 +15,7 @@ namespace Manimator.MObject
         /// Get the length of the line
         /// </summary>
         /// <returns>The length in metres</returns>
-        public Number GetLength();
+        public Term GetLength();
     }
 
     /// <summary>
@@ -32,9 +32,9 @@ namespace Manimator.MObject
             B = b;
         }
 
-        public Number GetLength()
+        public Term GetLength()
         {
-            return new Number(double.PositiveInfinity, unit: UnitManager.Unit["Metre"]);
+            return new Term(new Number(double.PositiveInfinity), "Metre");
         }
     }
 
@@ -52,9 +52,9 @@ namespace Manimator.MObject
             B = b;
         }
 
-        public Number GetLength()
+        public Term GetLength()
         {
-            return new Number(A.Position.DistanceTo(B.Position), unit: UnitManager.Unit["Metre"]);
+            return new Term(new Number(A.Position.DistanceTo(B.Position)), "Metre");
         }
     }
 
@@ -72,9 +72,10 @@ namespace Manimator.MObject
             B = b;
         }
 
-        public Number GetLength()
+        
+        public Term GetLength()
         {
-            return new Number(double.PositiveInfinity, unit: UnitManager.Unit["Metre"]);
+            return new Term(new Number(double.PositiveInfinity), "Metre");
         }
     }
 
@@ -84,19 +85,20 @@ namespace Manimator.MObject
     public class RayAngle : MObject, ILineBase
     {
         public Point A;
-        public Number Angle = new Number(0, UnitManager.Unit["Radian"]);
+        public Term Angle = new(new Number(0), "Radian");
 
-        public RayAngle(string name, System.Drawing.Color strokeColor, Point a, Number angle, System.Drawing.Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null) : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
+        public RayAngle(string name, System.Drawing.Color strokeColor, Point a, Term angle, System.Drawing.Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null) : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
         {
             A = a;
 
-            if (angle.MeasurementType != MeasurementType.Angle) throw new ArgumentException("The angle number must be an angle duh");
-            else Angle = angle;
+            if (angle.Quantity != Quantity.Angle) throw new ArgumentException("The angle number must be an angle duh");
+            Angle = angle;
         }
 
-        public Number GetLength()
+        
+        public Term GetLength()
         {
-            return new Number(double.PositiveInfinity, unit: UnitManager.Unit["Metre"]);
+            return new Term(new Number(double.PositiveInfinity), "Metre");
         }
     }
 }
