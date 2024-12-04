@@ -15,7 +15,7 @@ namespace Manimator.MObject
     /// <summary>
     /// Basically anything shown on screen
     /// </summary>
-    public abstract class MObject
+    public abstract class MObject : IScreenObject
     {
         /// <summary>
         /// The behind-the-scenes name ID of the object

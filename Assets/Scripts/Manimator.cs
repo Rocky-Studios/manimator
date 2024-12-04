@@ -87,4 +87,11 @@ public partial class Manimator : Node
 		Editor.CurrentProject = project;
 		GD.Print(Editor.CurrentProject.Path);
 	}
+	// https://en.wikipedia.org/wiki/Distance_from_a_point_to_a_line
+	public static float DistanceFromPointToLine(Vector2 lineA, Vector2 lineB, Vector2 point)
+	{
+		double num = Math.Abs((lineB.Y - lineA.Y) * point.X - (lineB.X - lineA.X) * point.Y + lineB.X * lineA.Y - lineB.Y * lineA.X);
+		double den = Math.Sqrt(Math.Pow(lineB.Y - lineA.Y, 2) + Math.Pow(lineB.X - lineA.X, 2));
+		return (float)(num / den);
+	}
 }

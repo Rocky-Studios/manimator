@@ -15,6 +15,7 @@ public partial class Editor : Control
 	public static int CurrentFrame = 1;
 
 	public static Node Scene3DRoot;
+	public static Camera3D Camera => Scene3DRoot.GetNode<Camera3D>("Camera3D");
 
 	Mesh PointMesh = ResourceLoader.Load<CylinderMesh>("res://Assets/MObjects/Point.res");
 	Mesh CubeMesh = ResourceLoader.Load<BoxMesh>("res://Assets/MObjects/Cube.res");
@@ -66,7 +67,7 @@ public partial class Editor : Control
 			{
 				MeshInstance3D p = new MeshInstance3D()
 				{
-					Mesh = PointMesh
+					
 				};
 				p.RotateX(Mathf.Pi/2);
 
@@ -82,6 +83,12 @@ public partial class Editor : Control
 
 				Scene3DRoot.AddChild(p);
 				p.Owner = GetTree().Root;
+				
+				PointOutline outline = new();
+				outline.Position = Camera.UnprojectPosition( p.GlobalPosition );
+				//outline.Position = new Vector2(1, 1);
+				Scene3DRoot.AddChild(outline);
+				outline.Notification((int)NotificationDraw);
 			}
 		}
 
