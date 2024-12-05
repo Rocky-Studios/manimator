@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Godot;
 
 namespace Manimator.MObject
 {
@@ -37,13 +38,15 @@ namespace Manimator.MObject
 			if (Editor.CurrentFrame < startFrame || Editor.CurrentFrame > endFrame) return false;
 			else return true;
 		}
-		public float GetPlayPercentage()
+		public  float GetPlayProgress() 
 		{
 			int startFrame = (int)StartTime * Editor.CurrentProject.Settings.Framerate;
 			int endFrame = (int)(StartTime + Length) * Editor.CurrentProject.Settings.Framerate;
-
-			return float.Lerp(startFrame, endFrame, Editor.CurrentFrame);
+			GD.Print(startFrame, endFrame);
+			return (Editor.CurrentFrame - (float)startFrame) / (endFrame - startFrame);
 		}
+
+		public abstract void OnUpdate();
 	}
 
 	/// <summary>
@@ -69,7 +72,10 @@ namespace Manimator.MObject
 		/// </summary>
 		public MObject[] Objects { get; set; }
 
-		public FadeAnimation(MObject[] objects, float length = 1, float startTime = 0, AnimationCurve? curve = null)
+		public float StartOpacity;
+		public float EndOpacity;
+
+		public FadeAnimation(MObject[] objects, float length = 1, float startTime = 0, float startOpacity = 0f, float endOpacity = 1f, AnimationCurve? curve = null)
 		{
 			Length = length;
 			if (Length < 0) throw new ArgumentException("Animation end must be after its start");
@@ -77,7 +83,20 @@ namespace Manimator.MObject
 			Curve = curve ?? new AnimationCurve();
 			Objects = objects;
 			if (Objects.Length == 0) throw new ArgumentException("Animation must affect at least one object");
+			StartOpacity = startOpacity;
+			EndOpacity = endOpacity;
 		}
-
+		
+		public void OnUpdate()
+		{
+			float percentage = (this as IAnimation).GetPlayProgress();
+			foreach (MObject obj in Objects)
+			{
+				float opacity = StartOpacity + (EndOpacity - StartOpacity) * percentage;
+				obj.Opacity.Value = opacity;
+				obj.StrokeColor.Value.A = opacity;
+				obj.Outline.QueueRedraw();
+			}
+		}
 	}
 }
