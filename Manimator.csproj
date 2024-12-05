@@ -14,4 +14,7 @@
       <HintPath>Resources\BetterNumberSystem.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="splashscreen.html" />
+  </ItemGroup>
 </Project>

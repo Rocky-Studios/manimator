@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using Manim;
 using Manimator.MObject;
@@ -32,7 +33,7 @@ public partial class Editor : Control
 		timer = new Timer();
 		//                       Frame rate
 		timer.Interval = 1000 / (30);
-		timer.Elapsed += OnTimerTick;
+		timer.Elapsed += OnFrameTick;
 
 		CurrentFrame = StartFrame;
 
@@ -54,9 +55,9 @@ public partial class Editor : Control
 			});
 
 			Scene Scene1 = new Scene("Scene 1", 0);
-			Scene1.MObjects.Add(new Point("Middle point", System.Drawing.Color.Aqua));
-			Scene1.MObjects.Add(new Point("Up point", System.Drawing.Color.Aqua, position: new Vector3(1, 1, 0)));
-			//Scene1.MObjects.Add(new Segment("Line", System.Drawing.Color.Red, Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
+			Scene1.MObjects.Add(new Point("Middle point", Color.Color8(0,255,255)));
+			Scene1.MObjects.Add(new Point("Up point", Color.Color8(0,255,255), position: new Vector3(1, 1, 0)));
+			Scene1.MObjects.Add(new Segment("Line", Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray()));
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
@@ -67,20 +68,14 @@ public partial class Editor : Control
 		{
 			if(obj is Point p)
 			{
-				if(p.StrokeColor.A == 0) continue;
-				PointOutline outline = new(p, Camera);
-				Scene3DRoot.AddChild(outline);
-				outline.Notification((int)NotificationDraw);
 			}
 			else if (obj is Segment s) {
-				if(s.StrokeColor.A == 0) continue;
-				LineOutline outline = new(s, Camera);
-				Scene3DRoot.AddChild(outline);
-				outline.Notification((int)NotificationDraw);
 			}
 		}
 
-		void OnTimerTick(object sender, ElapsedEventArgs e)
+		return;
+
+		void OnFrameTick(object sender, ElapsedEventArgs e)
 		{
 			if (!IsPlaying) return;
 			if(CurrentFrame < EndFrame)
@@ -107,8 +102,8 @@ public partial class Editor : Control
 
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
-			obj.OnUpdate();
-			obj.Opacity = 0.5f;
+			obj.OnUpdate(Camera);
+			obj.Outline.Notification((int)NotificationDraw);
 		}
 	}
 
