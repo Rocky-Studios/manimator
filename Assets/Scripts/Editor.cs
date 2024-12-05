@@ -60,6 +60,9 @@ public partial class Editor : Control
 			Scene1.MObjects.Add(new Segment("Line", Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray(), 2));
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray(), 2,2, 1f, 0f));
+			Scene1.Animations.Add(new TranslateAnimation(Scene1.MObjects.ToArray(),[
+				Vector3.Zero, new Vector3(1,1,0), Vector3.Zero, 
+			], 2));
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
 		}

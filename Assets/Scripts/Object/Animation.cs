@@ -99,4 +99,58 @@ namespace Manimator.MObject
 			}
 		}
 	}
+	
+	/// <summary>
+	/// An animation to translate objects
+	/// </summary>
+	public class TranslateAnimation : IAnimation
+	{
+		/// <summary>
+		/// The length of the animation in seconds
+		/// </summary>
+		public float Length { get; set; }
+		/// <summary>
+		/// The time in seconds when the animation starts
+		/// </summary>
+		public float StartTime { get; set; }
+
+		/// <summary>
+		/// The animation timing function
+		/// </summary>
+		public AnimationCurve Curve { get; set; }
+		/// <summary>
+		/// The objects affected by this animation
+		/// </summary>
+		public MObject[] Objects { get; set; }
+
+		public Vector3[] ObjectsOriginalPos;
+		public Vector3 StartPos;
+		public Vector3 EndPos;
+
+		public TranslateAnimation(MObject[] objects, Vector3[] objectsOriginalPos, float length = 1, float startTime = 0, Vector3? startPos = null, Vector3? endPos = null, AnimationCurve? curve = null)
+		{
+			Length = length;
+			if (Length < 0) throw new ArgumentException("Animation end must be after its start");
+			StartTime = startTime;
+			Curve = curve ?? new AnimationCurve();
+			Objects = objects;
+			if (Objects.Length == 0) throw new ArgumentException("Animation must affect at least one object");
+			StartPos = startPos ?? Vector3.Zero;
+			EndPos = endPos ?? new Vector3(0,1,0);
+			ObjectsOriginalPos = objectsOriginalPos ?? new Vector3[Objects.Length];
+		}
+		
+		public void OnUpdate()
+		{
+			float percentage = (this as IAnimation).GetPlayProgress();
+			foreach (MObject obj in Objects)
+			{
+				float translateX = StartPos.X + (EndPos.X - StartPos.X) * percentage;
+				float translateY = StartPos.Y + (EndPos.Y - StartPos.Y) * percentage;
+				float translateZ = StartPos.Z + (EndPos.Z - StartPos.Z) * percentage;
+				obj.Position.Value = ObjectsOriginalPos[Objects.ToList().IndexOf(obj)] + new Vector3(translateX, translateY, translateZ);
+				obj.Outline.QueueRedraw();
+			}
+		}
+	}
 }
