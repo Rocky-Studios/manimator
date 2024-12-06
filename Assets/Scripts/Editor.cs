@@ -57,14 +57,17 @@ public partial class Editor : Control
 			Camera.Position = new Vector3(0, 1f, 0);
 
 			Scene Scene1 = new Scene("Scene 1", 0);
-			
+			/*
 			Scene1.MObjects.Add(new Point("Middle point", Color.Color8(0,255,255), false));
 			Scene1.MObjects.Add(new Point("Up point", Color.Color8(0,255,255), false, position: new Vector3(0, 2f, 0)));
 			Scene1.MObjects.Add(new Point("Side point", Color.Color8(0,255,255), false, position: new Vector3(1.5f, 0, 0)));
 			
 			Scene1.MObjects.Add(new Polygon("Triangle", Camera, true, Color.Color8(255,255,255), Color.Color8(0,200,200), points: [
 				Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point, Scene1.MObjects[2] as Point
-			]));
+			]));*/
+			
+			Scene1.MObjects.Add(new RegularPolygon("Square", Camera, true, Color.Color8(255,255,255), Color.Color8(0,200,200), points: 6));
+			
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray(), 2));
 		
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray(), 2,2, 1f, 0f));	
