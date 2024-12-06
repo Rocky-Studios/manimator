@@ -38,11 +38,10 @@ namespace Manimator.MObject
 			if (Editor.CurrentFrame < startFrame || Editor.CurrentFrame > endFrame) return false;
 			else return true;
 		}
-		public  float GetPlayProgress() 
+		public float GetPlayProgress() 
 		{
 			int startFrame = (int)StartTime * Editor.CurrentProject.Settings.Framerate;
 			int endFrame = (int)(StartTime + Length) * Editor.CurrentProject.Settings.Framerate;
-			GD.Print(startFrame, endFrame);
 			return (Editor.CurrentFrame - (float)startFrame) / (endFrame - startFrame);
 		}
 
@@ -95,7 +94,8 @@ namespace Manimator.MObject
 				float opacity = StartOpacity + (EndOpacity - StartOpacity) * percentage;
 				obj.Opacity.Value = opacity;
 				obj.StrokeColor.Value.A = opacity;
-				obj.Outline.QueueRedraw();
+				obj.Outline?.QueueRedraw();
+				if(obj is TextObject t) t.QueueRedraw();
 			}
 		}
 	}
@@ -138,6 +138,14 @@ namespace Manimator.MObject
 			StartPos = startPos ?? Vector3.Zero;
 			EndPos = endPos ?? new Vector3(0,1,0);
 			ObjectsOriginalPos = objectsOriginalPos ?? new Vector3[Objects.Length];
+			
+			// Resize the original positions array if it's too small
+			if (ObjectsOriginalPos.Length >= Objects.Length) return;
+			Array.Resize(ref ObjectsOriginalPos, Objects.Length);
+			if (objectsOriginalPos == null) return;
+			for (int i = objectsOriginalPos.Length; i < Objects.Length; i++) {
+				ObjectsOriginalPos[i] = Objects[i].Position.Value;
+			}
 		}
 		
 		public void OnUpdate()
@@ -149,7 +157,8 @@ namespace Manimator.MObject
 				float translateY = StartPos.Y + (EndPos.Y - StartPos.Y) * percentage;
 				float translateZ = StartPos.Z + (EndPos.Z - StartPos.Z) * percentage;
 				obj.Position.Value = ObjectsOriginalPos[Objects.ToList().IndexOf(obj)] + new Vector3(translateX, translateY, translateZ);
-				obj.Outline.QueueRedraw();
+				obj.Outline?.QueueRedraw();
+				if(obj is TextObject t) t.QueueRedraw();
 			}
 		}
 	}

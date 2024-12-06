@@ -8,7 +8,6 @@ public partial class TextObject : MObject
 {
     public string Text;
     public Color Color;
-    public new Vector3 Position;
     public int FontSize;
     private Camera3D _camera;
 
@@ -18,14 +17,16 @@ public partial class TextObject : MObject
         Text = text;
         Color = color;
         FontSize = fontSize;
-        Position = position ?? new Vector3(0,0,0);
+        Position.Value = position ?? new Vector3(0,0,0);
         _camera = camera;
+        
+        _camera.AddChild(this);
     }
 
     public override void _Draw()
     {
         Font defaultFont = ThemeDB.FallbackFont;
-        Vector2 projectedPosition = _camera.UnprojectPosition(Position);
+        Vector2 projectedPosition = _camera.UnprojectPosition(Position.Value);
         DrawString(defaultFont, projectedPosition, Text, fontSize: FontSize);
     }
 }
