@@ -7,7 +7,6 @@ namespace Manimator.MObject;
 public partial class TextObject : MObject
 {
     public string Text;
-    public Color Color;
     public int FontSize;
     private Camera3D _camera;
 
@@ -15,7 +14,6 @@ public partial class TextObject : MObject
         : base(name, color, null, zIndex, opacity, position, rotation, scale)
     {
         Text = text;
-        Color = color;
         FontSize = fontSize;
         Position.Value = position ?? new Vector3(0,0,0);
         _camera = camera;
@@ -27,6 +25,6 @@ public partial class TextObject : MObject
     {
         Font defaultFont = ThemeDB.FallbackFont;
         Vector2 projectedPosition = _camera.UnprojectPosition(Position.Value);
-        DrawString(defaultFont, projectedPosition, Text, fontSize: FontSize);
+        DrawString(defaultFont, projectedPosition, Text, fontSize: FontSize, modulate: StrokeColor.Value);
     }
 }
