@@ -45,7 +45,6 @@ namespace Manimator.MObject
         public override void OnUpdate(Camera3D cam)
         {
             if(_camera == null) _camera = cam;
-            _Draw();
         }
     }
 /*
