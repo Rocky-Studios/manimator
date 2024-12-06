@@ -11,9 +11,9 @@ public partial class Editor : Control
 	public static Scene CurrentScene;
 
 	public static bool IsPlaying = false;
-	public static int StartFrame = 1;
+	public static int StartFrame = 0;
 	public static int EndFrame = 120;
-	public static int CurrentFrame = 1;
+	public static int CurrentFrame = 0;
 
 	public static Node Scene3DRoot;
 	public static Camera3D Camera => Scene3DRoot.GetNode<Camera3D>("Camera3D");
@@ -63,6 +63,10 @@ public partial class Editor : Control
 			Scene1.Animations.Add(new TranslateAnimation(Scene1.MObjects.ToArray(),[
 				Vector3.Zero, new Vector3(1,1,0), Vector3.Zero, 
 			], 2));
+			Scene3DRoot.AddChild(new ScreenText(new Label()
+			{
+				Text = "Here is a most fabulous line",
+			}, Color.Color8(255,255,255), 48, new Vector3(0.2f,0, 0), Camera));
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
 		}
@@ -144,11 +148,13 @@ public partial class Editor : Control
 
 	private void Back1Frame()
 	{
+		if (CurrentFrame <= StartFrame) return;
 		CurrentFrame--;
 	}
 
 	private void Forward1Frame()
 	{
+		if (CurrentFrame >= EndFrame) return;
 		CurrentFrame++;
 	}
 
