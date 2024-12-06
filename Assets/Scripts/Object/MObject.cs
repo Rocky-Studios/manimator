@@ -8,7 +8,7 @@ namespace Manimator.MObject
     /// <summary>
     /// Basically anything shown on screen
     /// </summary>
-    public abstract class MObject : IScreenObject
+    public abstract partial class MObject : Node2D, IScreenObject
     {
         /// <summary>
         /// The behind-the-scenes name ID of the object

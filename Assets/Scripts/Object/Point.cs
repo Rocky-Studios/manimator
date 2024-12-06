@@ -6,7 +6,7 @@ namespace Manimator.MObject
     /// <summary>
     /// An infinitely small single point in space
     /// </summary>
-    public class Point : MObject
+    public partial class Point : MObject
     {
         /// <summary>
         /// Generates an infinitely small single point in space

@@ -63,10 +63,7 @@ public partial class Editor : Control
 			Scene1.Animations.Add(new TranslateAnimation(Scene1.MObjects.ToArray(),[
 				Vector3.Zero, new Vector3(1,1,0), Vector3.Zero, 
 			], 2));
-			Scene3DRoot.AddChild(new ScreenText(new Label()
-			{
-				Text = "Here is a most fabulous line",
-			}, Color.Color8(255,255,255), 48, new Vector3(0.2f,0, 0), Camera));
+			Scene3DRoot.AddChild(new TextObject("Line text", "Here is a most fabulous line", Color.Color8(255,255,255), 48, Camera, position: new Vector3(0.2f,0, 0)));
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
 		}

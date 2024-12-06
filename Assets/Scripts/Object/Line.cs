@@ -17,7 +17,7 @@ namespace Manimator.MObject
     /// <summary>
     /// A line between PointA and PointB that extends infinitely in both directions
     /// </summary>
-    public class Line: MObject, ILineBase
+    public partial class Line: MObject, ILineBase
     {
         public Point A;
         public Point B;
@@ -48,7 +48,7 @@ namespace Manimator.MObject
     /// <summary>
     /// A line segment between PointA and PointB
     /// </summary>
-    public class Segment : MObject, ILineBase
+    public partial class Segment : MObject, ILineBase
     {
         public Point A;
         public Point B;
@@ -79,7 +79,7 @@ namespace Manimator.MObject
     /// <summary>
     /// A line that starts at PointA and goes to and infintely beyond PointB
     /// </summary>
-    public class Ray : MObject, ILineBase
+    public partial  class Ray : MObject, ILineBase
     {
         public Point A;
         public Point B;
@@ -111,7 +111,7 @@ namespace Manimator.MObject
     /// <summary>
     /// A line that starts at PointA and goes to and infintely in the direction of an Angle
     /// </summary>
-    public class RayAngle : MObject, ILineBase
+    public partial class RayAngle : MObject, ILineBase
     {
         public Point A;
         public ObjectProperty<Term> Angle = new("Angle", new(new Number(0), "rad"));
