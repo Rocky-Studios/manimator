@@ -18,7 +18,7 @@ namespace Manimator.MObject
         /// <param name="rotation">The 2D screen rotation of the object</param>
         /// <param name="scale">The 2D screen scale of the object</param>
         public Point(string name, Color? strokeColor = null, bool visible = true, int zIndex = 0, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, strokeColor, zIndex, visible ? 1f : 0f, position, rotation, scale)
+            : base(name, visible, strokeColor, strokeColor, zIndex, 1f, position, rotation, scale)
         {
         }
 

@@ -22,8 +22,8 @@ namespace Manimator.MObject
         public Point A;
         public Point B;
 
-        public Line(string name, Point a, Point b, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
+        public Line(string name, Point a, Point b, bool visible = true, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+            : base(name, visible, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
         {
             A = a;
             B = b;
@@ -53,8 +53,8 @@ namespace Manimator.MObject
         public Point A;
         public Point B;
 
-        public Segment(string name, Point a, Point b, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
+        public Segment(string name, Point a, Point b, bool visible = true, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+            : base(name, visible, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
         {
             A = a;
             B = b;
@@ -84,8 +84,8 @@ namespace Manimator.MObject
         public Point A;
         public Point B;
 
-        public Ray(string name, Point a, Point b, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
+        public Ray(string name, Point a, Point b, bool visible = true, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+            : base(name, visible, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
         {
             A = a;
             B = b;
@@ -116,8 +116,8 @@ namespace Manimator.MObject
         public Point A;
         public ObjectProperty<Term> Angle = new("Angle", new(new Number(0), "rad"));
 
-        public RayAngle(string name, Point a, Color? strokeColor = null, Term? angle = null, Color? fillColor = null, int zIndex = 1, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
+        public RayAngle(string name, Point a, Term? angle = null, bool visible = true, Color? strokeColor = null, Color? fillColor = null, int zIndex = 1, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+            : base(name, visible, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
         {
             A = a;
 

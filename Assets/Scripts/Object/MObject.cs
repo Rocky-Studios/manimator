@@ -28,6 +28,8 @@ namespace Manimator.MObject
         public ObjectProperty<int> ZIndex = new ("Z Index", 0);
         
         public ObjectProperty<float> Opacity = new("Opacity", 1f);
+        
+        public ObjectProperty<bool> Visible = new("Visible", true);
         /// <summary>
         /// The position of the object
         /// </summary>
@@ -56,10 +58,12 @@ namespace Manimator.MObject
         /// <param name="position">The 2D screen position of the object</param>
         /// <param name="rotation">The 2D screen rotation of the object</param>
         /// <param name="scale">The 2D screen scale of the object</param>
-        protected MObject(string name, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+        protected MObject(string name, bool visible, Color? strokeColor = null, Color? fillColor = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
         {
             Name = name;
-
+            
+            Visible.Value = visible;
+            
             if (strokeColor != null) StrokeColor.Value = strokeColor.Value;
 
             if (fillColor != null) FillColor.Value = fillColor.Value;

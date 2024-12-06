@@ -9,8 +9,8 @@ namespace Manimator.MObject
         Point[] Points = {};
         private Camera3D _camera;
 
-        public Polygon(string name, Camera3D camera, Color? strokeColor = null, Color? fillColor = null, Point[] points = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
+        public Polygon(string name, Camera3D camera, bool visible = true, Color? strokeColor = null, Color? fillColor = null, Point[] points = null, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+            : base(name, visible, strokeColor, fillColor, zIndex, opacity, position, rotation, scale)
         {
             Points = points ?? throw new Exception("Polygon must have points");
             if (Points.Length < 3) throw new Exception("Polygon must have at least 3 points");

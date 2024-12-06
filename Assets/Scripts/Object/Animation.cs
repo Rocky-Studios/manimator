@@ -94,8 +94,9 @@ namespace Manimator.MObject
 				float opacity = StartOpacity + (EndOpacity - StartOpacity) * percentage;
 				obj.Opacity.Value = opacity;
 				obj.StrokeColor.Value.A = opacity;
+				obj.FillColor.Value.A = opacity;
 				obj.Outline?.QueueRedraw();
-				if(obj is TextObject t) t.QueueRedraw();
+				obj.QueueRedraw();
 			}
 		}
 	}
@@ -127,7 +128,7 @@ namespace Manimator.MObject
 		public Vector3 StartPos;
 		public Vector3 EndPos;
 
-		public TranslateAnimation(MObject[] objects, Vector3[] objectsOriginalPos, float length = 1, float startTime = 0, Vector3? startPos = null, Vector3? endPos = null, AnimationCurve? curve = null)
+		public TranslateAnimation(MObject[] objects, Vector3[] objectsOriginalPos = null, float length = 1, float startTime = 0, Vector3? startPos = null, Vector3? endPos = null, AnimationCurve? curve = null)
 		{
 			Length = length;
 			if (Length < 0) throw new ArgumentException("Animation end must be after its start");

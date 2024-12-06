@@ -10,8 +10,8 @@ public partial class TextObject : MObject
     public int FontSize;
     private Camera3D _camera;
 
-    public TextObject(string name, string text, Color color, int fontSize, Camera3D camera, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-        : base(name, color, null, zIndex, opacity, position, rotation, scale)
+    public TextObject(string name, string text, Color color, int fontSize, Camera3D camera, bool visible = true, int zIndex = 0, float opacity = 1f, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+        : base(name, visible, color, null, zIndex, opacity, position, rotation, scale)
     {
         Text = text;
         FontSize = fontSize;
