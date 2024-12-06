@@ -25,6 +25,7 @@ public partial class PointOutline : Outline
     {
         Vector2 pointPos = _camera.UnprojectPosition(Point.Position.Value);
         Color stroke = Point.StrokeColor.Value;
+        stroke.A *= Point.Opacity.Value;
         DrawCircle(pointPos, 10f, stroke);
     }
 }

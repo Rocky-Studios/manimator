@@ -17,10 +17,9 @@ namespace Manimator.MObject
         /// <param name="position">The 2D screen position of the object</param>
         /// <param name="rotation">The 2D screen rotation of the object</param>
         /// <param name="scale">The 2D screen scale of the object</param>
-        public Point(string name, Color? strokeColor = null, int zIndex = 0, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
-            : base(name, strokeColor, strokeColor, zIndex, 1f, position, rotation, scale)
+        public Point(string name, Color? strokeColor = null, bool visible = true, int zIndex = 0, Vector3? position = null, Vector3? rotation = null, Vector3? scale = null)
+            : base(name, strokeColor, strokeColor, zIndex, visible ? 1f : 0f, position, rotation, scale)
         {
-
         }
 
         public override void OnUpdate(Camera3D cam)

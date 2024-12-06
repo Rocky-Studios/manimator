@@ -53,19 +53,24 @@ public partial class Editor : Control
 				Height = 1080,
 				Framerate = 30
 			});
+			
+			Camera.Position = new Vector3(0, 1f, 0);
 
 			Scene Scene1 = new Scene("Scene 1", 0);
-			Scene1.MObjects.Add(new Point("Middle point", Color.Color8(0,255,255)));
-			Scene1.MObjects.Add(new Point("Up point", Color.Color8(0,255,255), position: new Vector3(1, 1, 0)));
-			Scene1.MObjects.Add(new Segment("Line", Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point));
-			Scene1.MObjects.Add(new TextObject("Line text", "Here is a most fabulous line", Color.Color8(255,255,255), 48, Camera, position: new Vector3(0.2f,0, 0)));
 			
+			Scene1.MObjects.Add(new Point("Middle point", Color.Color8(0,255,255), false));
+			Scene1.MObjects.Add(new Point("Up point", Color.Color8(0,255,255), false, position: new Vector3(0, 2f, 0)));
+			Scene1.MObjects.Add(new Point("Side point", Color.Color8(0,255,255), false, position: new Vector3(1.5f, 0, 0)));
 			
+			Scene1.MObjects.Add(new Polygon("Triangle", Camera, Color.Color8(255,255,255), Color.Color8(0,200,200), points: [
+				Scene1.MObjects[0] as Point, Scene1.MObjects[1] as Point, Scene1.MObjects[2] as Point
+			]));
+			/*
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray(), 2));
 			Scene1.Animations.Add(new FadeAnimation(Scene1.MObjects.ToArray(), 2,2, 1f, 0f));
 			Scene1.Animations.Add(new TranslateAnimation(Scene1.MObjects.ToArray(),[
 				Vector3.Zero, new Vector3(1,1,0), Vector3.Zero
-			], 2));
+			], 2));*/
 			newProject.Scenes.Add(Scene1);
 			CurrentProject = newProject;
 		}
@@ -110,7 +115,8 @@ public partial class Editor : Control
 		foreach (MObject.MObject obj in CurrentScene.MObjects)
 		{
 			obj.OnUpdate(Camera);
-			obj.Outline?.Notification((int)NotificationDraw);
+			obj.Outline?.QueueRedraw();
+			obj.QueueRedraw();
 		}
 
 		foreach (var anim in CurrentScene.Animations)
