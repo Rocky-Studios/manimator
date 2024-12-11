@@ -60,15 +60,47 @@ public partial class Editor : Control
 
 			#region Objects
 
+			// Intro
 			Scene1.MObjects.Add(new TextObject("Intro Text", "Proof of Pythagoras' Theorem", new Color(1, 1, 1), 72, Camera, position: new Vector3(-2.4f, 0.8f, 0)));
 			Scene1.MObjects.Add(new TextObject("Intro Text Subtitle", "Presented by Manimator", new Color(1, 1, 1), 36, Camera, position: new Vector3(-2.4f, 0.4f, 0)));
+			
+			// Right angle triangle
+			Point A = new("A", null, false, position: new Vector3(-1, 0, 0));
+			Point B = new("B", null, false, position: new Vector3(1, 0, 0));
+			Point C = new("C", null, false, position: new Vector3(-1, 1.5f, 0));
+			
+			Scene1.MObjects.Add(A);
+			Scene1.MObjects.Add(B);
+			Scene1.MObjects.Add(C);
+
+			Polygon triangle = new("Triangle", Camera, points: [A, B, C], strokeColor: new Color(1, 1, 1),
+				visible: false);
+			
+			// Side length text
+			TextObject bottom = new("Side A", "4", new Color(1, 1, 1), 36, Camera,
+				position: new Vector3(-0.2f, -0.3f, 0), visible: false);
+			TextObject left = new("Side B", "3", new Color(1, 1, 1), 36, Camera,
+				position: new Vector3(-1.5f, 0.75f, 0), visible: false);
+			TextObject hypotenuse = new("Side C", "?", new Color(1, 1, 1), 36, Camera,
+				position: new Vector3(0.5f, 0.75f, 0), visible: false);
+			
+			Scene1.MObjects.Add(bottom);
+			Scene1.MObjects.Add(left);
+			Scene1.MObjects.Add(hypotenuse);
+			
+			
+			Scene1.MObjects.Add(triangle);
+			
 
 			#endregion
 			
 			#region Animations
 
 			Scene1.Animations.Add(new FadeAnimation([ Scene1.MObjects[0], Scene1.MObjects[1] ], 1, 2, 1, 0));
-
+			
+			Scene1.Animations.Add(new FadeAnimation([ triangle ], 1, 3.5f, 0, 1));
+			Scene1.Animations.Add(new FadeAnimation([ bottom, left, hypotenuse ], 0.5f, 4f, 0, 1));
+			
 			#endregion
 			
 			newProject.Scenes.Add(Scene1);

@@ -30,6 +30,7 @@ namespace Manimator.MObject
 
         public override void _Draw()
         {
+            if(!Visible.Value) return;
             Vector2[] points = PointsToVector2Array(Points, _camera);
             DrawColoredPolygon(points, FillColor.Value);
             if (StrokeColor.Value.A == 0) return;
@@ -69,6 +70,7 @@ namespace Manimator.MObject
 
         public override void _Draw()
         {
+            if(!Visible.Value) return;
             Vector2[] points = Polygon.PointsToVector2Array(Points, _camera);
             DrawColoredPolygon(points, FillColor.Value);
             if (StrokeColor.Value.A == 0) return;

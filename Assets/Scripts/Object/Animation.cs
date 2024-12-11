@@ -92,6 +92,7 @@ namespace Manimator.MObject
 			foreach (MObject obj in Objects)
 			{
 				float opacity = StartOpacity + (EndOpacity - StartOpacity) * percentage;
+				if(opacity > 0) obj.Visible.Value = true;
 				obj.Opacity.Value = opacity;
 				obj.StrokeColor.Value.A = opacity;
 				obj.FillColor.Value.A = opacity;

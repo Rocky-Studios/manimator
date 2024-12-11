@@ -23,6 +23,7 @@ public partial class TextObject : MObject
 
     public override void _Draw()
     {
+        if (!Visible.Value) return;
         Font defaultFont = ThemeDB.FallbackFont;
         Vector2 projectedPosition = _camera.UnprojectPosition(Position.Value);
         DrawString(defaultFont, projectedPosition, Text, fontSize: FontSize, modulate: StrokeColor.Value);
